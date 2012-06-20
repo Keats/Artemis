@@ -7,19 +7,19 @@ class World
 
 
   constructor: () ->
-    @entityManager = new Bragi.EntityManager(@)
-    @systemManager = new Bragi.SystemManager(@)
-    @tagManager = new Bragi.TagManager(@)
+    @entityManager = new Bragi.EntityManager @
+    @systemManager = new Bragi.SystemManager @
+    @tagManager = new Bragi.TagManager @
 
     @deleted = []
 
 
+  createEntity: () ->
+    @entityManager.create()
+
+
   deleteEntity: (entity) ->
     #should delete an entity (add it to an array of deleted to process next)
-
-
-  createEntity: () ->
-    #should call the EntityManager.create()
 
 
   getEntity: (id) ->

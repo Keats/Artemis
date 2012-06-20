@@ -6,18 +6,19 @@ Bragi.EntityManager = {}
 class EntityManager
 
 
-  construct: (world) ->
+  constructor: (world) ->
     @world = world
-
     @entities = {}
     @nextId = 0
 
 
   create: () ->
-    entity = new Bragi.Entity(@world, @nextId)
-    @nextId++
+    entity = new Bragi.Entity @world, @nextId
 
+    @nextId++
     @entities[entity.id] = entity
+
+    entity
 
 
   remove: (entity) ->
