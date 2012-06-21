@@ -5,7 +5,7 @@
     var world;
     world = null;
     before(function() {
-      return world = new Bragi.World();
+      return world = new Bragi.EntityWorld();
     });
     describe("Instantiation", function() {
       var entityManager;
@@ -14,25 +14,29 @@
         return entityManager = new Bragi.EntityManager(world);
       });
       it("should have the world instance as property", function() {
-        return entityManager.world.should.be.an["instanceof"](Bragi.World);
+        return entityManager.world.should.be.an["instanceof"](Bragi.EntityWorld);
       });
       it("should have nextId equal to 0", function() {
         return entityManager.nextId.should.be.equal(0);
       });
-      return it("should have an empty object called entities", function() {
+      it("should have an empty object called entities", function() {
         entityManager.entities.should.be.an["instanceof"](Object);
         return entityManager.entities.should.be.empty;
       });
+      return it("should have an empty object called componentsByType", function() {
+        entityManager.componentsByType.should.be.an["instanceof"](Object);
+        return entityManager.componentsByType.should.be.empty;
+      });
     });
-    return describe("Creating entities", function() {
+    describe("Creating entities", function() {
       var entity, entity2, entityManager;
       entityManager = null;
       entity = null;
       entity2 = null;
       before(function() {
         entityManager = new Bragi.EntityManager(world);
-        entity = entityManager.create();
-        return entity2 = entityManager.create();
+        entity = entityManager._create();
+        return entity2 = entityManager._create();
       });
       it("should have created 2 entities", function() {
         entity.should.be.an["instanceof"](Bragi.Entity);
@@ -46,6 +50,63 @@
       });
       return it("should have an object called entities with a length of 2", function() {
         return Object.keys(entityManager.entities).should.have.length(2);
+      });
+    });
+    describe("Retrieving entities", function() {
+      var entity, entity2, entityManager;
+      entityManager = null;
+      entity = null;
+      entity2 = null;
+      before(function() {
+        entityManager = new Bragi.EntityManager(world);
+        entity = entityManager._create();
+        return entity2 = entityManager._getEntity(entity.id);
+      });
+      return it("should have retrieved entity", function() {
+        return entity2.should.be.equal(entity);
+      });
+    });
+    return describe("Adding components to entities", function() {
+      var component, components, entity, entityManager, notInheritingFunction;
+      entityManager = null;
+      entity = null;
+      component = null;
+      notInheritingFunction = null;
+      components = [];
+      components[0] = [];
+      components[1] = [];
+      before(function() {
+        var entity2, key, notInheriting, obj, prop;
+        entityManager = new Bragi.EntityManager(world);
+        entity = entityManager._create();
+        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(100));
+        entity2 = entityManager._create();
+        entityManager._addComponent(entity2, new BragiTests.DummyComponentHP(100));
+        for (key in entityManager.componentsByType) {
+          obj = entityManager.componentsByType[key];
+          for (prop in obj) {
+            components[key].push(obj[prop]);
+          }
+        }
+        notInheriting = new Object();
+        return notInheritingFunction = function(notInheriting) {
+          return entityManager._addComponent(entity, notInheriting);
+        };
+      });
+      it("should throw an error if calling with an object not inheriting from Bragi.Component", function() {
+        return notInheritingFunction.should.Throw(Error);
+      });
+      it("entity should have bits equal 3 (HP + Position components)", function() {
+        return entity.bits.should.be.equal(3);
+      });
+      return it("should have the object componentsByType referencing all entities/components associations", function() {
+        Object.keys(entityManager.componentsByType).should.have.length(2);
+        components[0].should.have.length(2);
+        components[0][0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        components[0][1].should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        components[1].should.have.length(1);
+        return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
       });
     });
   });

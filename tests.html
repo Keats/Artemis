@@ -5,17 +5,17 @@
     <link rel="stylesheet" href="mocha.css" />
 
     <script src="js/Bragi.js"></script>
-    <script src="js/World.js"></script>
+    <script src="js/EntityWorld.js"></script>
     <script src="js/Entity.js"></script>
     <script src="js/EntityManager.js"></script>
     <script src="js/Component.js"></script>
+    <script src="js/ComponentType.js"></script>
+    <script src="js/ComponentTypeManager.js"></script>
     <script src="js/ComponentMapper.js"></script>
     <script src="js/GroupManager.js"></script>
     <script src="js/System.js"></script>
     <script src="js/SystemManager.js"></script>
     <script src="js/TagManager.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 
   </head>
@@ -23,16 +23,20 @@
     <div id="mocha"></div>
 
     <script src="mocha.js"></script>
-    <script src="http://chaijs.com/chai.js"></script>
+    <script src="chai.js"></script>
     <script>mocha.setup('bdd')</script>
 
-    <script src="js/tests/WorldTests.js"></script>
+    <script src="js/tests/EntityWorldTests.js"></script>
     <script src="js/tests/EntityTests.js"></script>
     <script src="js/tests/EntityManagerTests.js"></script>
+    <script src="js/tests/ComponentTests.js"></script>
+    <script src="js/tests/ComponentTypeManagerTests.js"></script>
+    <script src="js/tests/DummyComponents.js"></script>
 
 
     <script>
       should = chai.should();
+      expect = chai.expect;
       mocha.run();
     </script>
   </body>

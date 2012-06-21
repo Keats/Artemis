@@ -9,10 +9,24 @@
     function Entity(world, id) {
       this.world = world;
       this.id = id;
-      this.components = [];
+      this.bits = 0;
     }
 
-    Entity.prototype.addComponent = function(component) {};
+    Entity.prototype.addComponent = function(component) {
+      if (!(component instanceof Bragi.Component)) {
+        throw new Error("Tried to add a component that is not inheriting from Component");
+      }
+      this.world.entityManager._addComponent(this, component);
+      return null;
+    };
+
+    Entity.prototype._addBit = function(bit) {
+      return this.bits |= bit;
+    };
+
+    Entity.prototype._removeBit = function(bit) {
+      return this.bits &= ~bit;
+    };
 
     Entity.prototype.removeComponent = function(component) {};
 

@@ -8,11 +8,26 @@ class Entity
     @world = world
     @id = id
 
-    @components = []
+    @bits = 0
 
 
+  #Call that function directly to add any component to an entity
   addComponent: (component) ->
-    #add it to something
+    unless component instanceof Bragi.Component
+      throw new Error "Tried to add a component that is not inheriting from Component"
+
+    @world.entityManager._addComponent @, component
+    null
+
+
+  #Using bitwise operations as it is very very fast
+  _addBit: (bit) ->
+    @bits |= bit
+
+
+  #Using bitwise operations as it is very very fast
+  _removeBit: (bit) ->
+    @bits &= ~bit
 
 
   removeComponent: (component) ->

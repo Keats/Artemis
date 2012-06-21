@@ -9,10 +9,11 @@
     function EntityManager(world) {
       this.world = world;
       this.entities = {};
+      this.componentsByType = {};
       this.nextId = 0;
     }
 
-    EntityManager.prototype.create = function() {
+    EntityManager.prototype._create = function() {
       var entity;
       entity = new Bragi.Entity(this.world, this.nextId);
       this.nextId++;
@@ -20,19 +21,34 @@
       return entity;
     };
 
+    EntityManager.prototype._getEntity = function(id) {
+      return this.entities[id];
+    };
+
     EntityManager.prototype.remove = function(entity) {
       return delete this.entities[entity.id];
     };
 
-    EntityManager.prototype.addComponent = function(entity, component) {};
+    EntityManager.prototype._addComponent = function(entity, component) {
+      var componentType, components;
+      if (!(component instanceof Bragi.Component)) {
+        throw new Error("Tried to add a component that is not inheriting from Component");
+      }
+      componentType = Bragi.ComponentTypeManager.getType(component);
+      components = this.componentsByType[componentType.id];
+      if (!components) {
+        components = {};
+        this.componentsByType[componentType.id] = components;
+      }
+      components[entity.id] = component;
+      return entity._addBit(componentType.bit);
+    };
 
     EntityManager.prototype.getComponent = function(entity, component) {};
 
     EntityManager.prototype.removeComponent = function(entity, component) {};
 
     EntityManager.prototype.removeAllComponents = function(entity) {};
-
-    EntityManager.prototype.getEntity = function(id) {};
 
     EntityManager.prototype.isActive = function(id) {};
 
