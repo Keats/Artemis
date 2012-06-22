@@ -20,6 +20,19 @@ class Entity
     null
 
 
+  #Call the entity manager to delete this component from this entity
+  removeComponent: (componentName) ->
+    @world.entityManager._removeComponent @, componentName
+    null
+
+
+  #Call the entity manager and returns the component requested
+  getComponent: (componentName) ->
+    @world.entityManager._getComponent @, componentName
+    null
+
+
+
   #Using bitwise operations as it is very very fast
   _addBit: (bit) ->
     @bits |= bit
@@ -30,8 +43,7 @@ class Entity
     @bits &= ~bit
 
 
-  removeComponent: (component) ->
-    #remove it from something
+
 
 
   getComponents: () ->

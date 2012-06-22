@@ -62,12 +62,25 @@ describe "Entity Manager", ->
       entity2.should.be.equal entity
 
 
+  describe "Deleting entities", ->
+
+    entityManager = null
+    entity = null
+
+    before () ->
+      entityManager = new Bragi.EntityManager world
+      entity = entityManager._create()
+      entityManager.remove entity
+
+    it "should have no entities in the entities object", ->
+      Object.keys(entityManager.entities).should.have.length 0
+
+
   describe "Adding components to entities", ->
 
     entityManager = null
     entity = null
     component = null
-    notInheritingFunction = null
 
     components = []
     components[0] = []
@@ -87,13 +100,6 @@ describe "Entity Manager", ->
         for prop of obj
           components[key].push obj[prop]
 
-      notInheriting = new Object()
-
-      notInheritingFunction = (notInheriting) ->
-        entityManager._addComponent entity, notInheriting
-
-    it "should throw an error if calling with an object not inheriting from Bragi.Component", ->
-      notInheritingFunction.should.Throw Error
     it "entity should have bits equal 3 (HP + Position components)", ->
       entity.bits.should.be.equal 3
     it "should have the object componentsByType referencing all entities/components associations", ->
@@ -101,5 +107,40 @@ describe "Entity Manager", ->
       components[0].should.have.length 2
       components[0][0].should.be.an.instanceof BragiTests.DummyComponentHP
       components[0][1].should.be.an.instanceof BragiTests.DummyComponentHP
+      components[1].should.have.length 1
+      components[1][0].should.be.an.instanceof BragiTests.DummyComponentPosition
+
+  describe "Removing components from entities", ->
+
+    entityManager = null
+    entity = null
+    component = null
+
+    components = []
+    components[0] = []
+    components[1] = []
+
+    before () ->
+      entityManager = new Bragi.EntityManager world
+      entity = entityManager._create()
+      entityManager._addComponent entity, new BragiTests.DummyComponentHP 100
+      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 100
+
+      entity2 = entityManager._create()
+      entityManager._addComponent entity2, new BragiTests.DummyComponentHP 100
+
+      entityManager._removeComponent entity, "DummyComponentHP"
+
+      for key of entityManager.componentsByType
+        obj = entityManager.componentsByType[key]
+        for prop of obj
+          components[key].push obj[prop]
+
+    it "entity should have bits equal 3 (HP + Position components)", ->
+      entity.bits.should.be.equal 2
+    it "should have the object componentsByType referencing all entities/components associations", ->
+      Object.keys(entityManager.componentsByType).should.have.length 2
+      components[0].should.have.length 1
+      components[0][0].should.be.an.instanceof BragiTests.DummyComponentHP
       components[1].should.have.length 1
       components[1][0].should.be.an.instanceof BragiTests.DummyComponentPosition

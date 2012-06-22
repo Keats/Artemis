@@ -24,8 +24,20 @@ class ComponentTypeManager
     if not type
       type = new Bragi.ComponentType()
       _componentTypes[className] = type
+        
+    type
+
+
+  #Same as getType with a string instead of an object
+  @getTypeByName: (className) ->
+    type = _componentTypes[className]
+
+    if not type
+      type = new Bragi.ComponentType()
+      _componentTypes[className] = type
 
     type
+
 
 
   @getId: (component) ->

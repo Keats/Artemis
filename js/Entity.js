@@ -20,6 +20,16 @@
       return null;
     };
 
+    Entity.prototype.removeComponent = function(componentName) {
+      this.world.entityManager._removeComponent(this, componentName);
+      return null;
+    };
+
+    Entity.prototype.getComponent = function(componentName) {
+      this.world.entityManager._getComponent(this, componentName);
+      return null;
+    };
+
     Entity.prototype._addBit = function(bit) {
       return this.bits |= bit;
     };
@@ -27,8 +37,6 @@
     Entity.prototype._removeBit = function(bit) {
       return this.bits &= ~bit;
     };
-
-    Entity.prototype.removeComponent = function(component) {};
 
     Entity.prototype.getComponents = function() {};
 

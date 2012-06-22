@@ -31,9 +31,6 @@
 
     EntityManager.prototype._addComponent = function(entity, component) {
       var componentType, components;
-      if (!(component instanceof Bragi.Component)) {
-        throw new Error("Tried to add a component that is not inheriting from Component");
-      }
       componentType = Bragi.ComponentTypeManager.getType(component);
       components = this.componentsByType[componentType.id];
       if (!components) {
@@ -44,9 +41,15 @@
       return entity._addBit(componentType.bit);
     };
 
-    EntityManager.prototype.getComponent = function(entity, component) {};
+    EntityManager.prototype._removeComponent = function(entity, componentName) {
+      var componentType, components;
+      componentType = Bragi.ComponentTypeManager.getTypeByName(componentName);
+      components = this.componentsByType[componentType.id];
+      delete components[entity.id];
+      return entity._removeBit(componentType.bit);
+    };
 
-    EntityManager.prototype.removeComponent = function(entity, component) {};
+    EntityManager.prototype._getComponent = function(entity, componentName) {};
 
     EntityManager.prototype.removeAllComponents = function(entity) {};
 

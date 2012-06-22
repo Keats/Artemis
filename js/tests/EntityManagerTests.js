@@ -66,36 +66,48 @@
         return entity2.should.be.equal(entity);
       });
     });
-    return describe("Adding components to entities", function() {
-      var component, components, entity, entityManager, notInheritingFunction;
+    describe("Deleting entities", function() {
+      var entity, entityManager;
+      entityManager = null;
+      entity = null;
+      before(function() {
+        entityManager = new Bragi.EntityManager(world);
+        entity = entityManager._create();
+        return entityManager.remove(entity);
+      });
+      return it("should have no entities in the entities object", function() {
+        return Object.keys(entityManager.entities).should.have.length(0);
+      });
+    });
+    describe("Adding components to entities", function() {
+      var component, components, entity, entityManager;
       entityManager = null;
       entity = null;
       component = null;
-      notInheritingFunction = null;
       components = [];
       components[0] = [];
       components[1] = [];
       before(function() {
-        var entity2, key, notInheriting, obj, prop;
+        var entity2, key, obj, prop, _results;
         entityManager = new Bragi.EntityManager(world);
         entity = entityManager._create();
         entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
         entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(100));
         entity2 = entityManager._create();
         entityManager._addComponent(entity2, new BragiTests.DummyComponentHP(100));
+        _results = [];
         for (key in entityManager.componentsByType) {
           obj = entityManager.componentsByType[key];
-          for (prop in obj) {
-            components[key].push(obj[prop]);
-          }
+          _results.push((function() {
+            var _results1;
+            _results1 = [];
+            for (prop in obj) {
+              _results1.push(components[key].push(obj[prop]));
+            }
+            return _results1;
+          })());
         }
-        notInheriting = new Object();
-        return notInheritingFunction = function(notInheriting) {
-          return entityManager._addComponent(entity, notInheriting);
-        };
-      });
-      it("should throw an error if calling with an object not inheriting from Bragi.Component", function() {
-        return notInheritingFunction.should.Throw(Error);
+        return _results;
       });
       it("entity should have bits equal 3 (HP + Position components)", function() {
         return entity.bits.should.be.equal(3);
@@ -105,6 +117,48 @@
         components[0].should.have.length(2);
         components[0][0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
         components[0][1].should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        components[1].should.have.length(1);
+        return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
+      });
+    });
+    return describe("Removing components from entities", function() {
+      var component, components, entity, entityManager;
+      entityManager = null;
+      entity = null;
+      component = null;
+      components = [];
+      components[0] = [];
+      components[1] = [];
+      before(function() {
+        var entity2, key, obj, prop, _results;
+        entityManager = new Bragi.EntityManager(world);
+        entity = entityManager._create();
+        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(100));
+        entity2 = entityManager._create();
+        entityManager._addComponent(entity2, new BragiTests.DummyComponentHP(100));
+        entityManager._removeComponent(entity, "DummyComponentHP");
+        _results = [];
+        for (key in entityManager.componentsByType) {
+          obj = entityManager.componentsByType[key];
+          _results.push((function() {
+            var _results1;
+            _results1 = [];
+            for (prop in obj) {
+              _results1.push(components[key].push(obj[prop]));
+            }
+            return _results1;
+          })());
+        }
+        return _results;
+      });
+      it("entity should have bits equal 3 (HP + Position components)", function() {
+        return entity.bits.should.be.equal(2);
+      });
+      return it("should have the object componentsByType referencing all entities/components associations", function() {
+        Object.keys(entityManager.componentsByType).should.have.length(2);
+        components[0].should.have.length(1);
+        components[0][0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
         components[1].should.have.length(1);
         return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
       });

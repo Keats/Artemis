@@ -25,6 +25,16 @@
       return type;
     };
 
+    ComponentTypeManager.getTypeByName = function(className) {
+      var type;
+      type = _componentTypes[className];
+      if (!type) {
+        type = new Bragi.ComponentType();
+        _componentTypes[className] = type;
+      }
+      return type;
+    };
+
     ComponentTypeManager.getId = function(component) {
       return this.getType(component).id;
     };

@@ -37,10 +37,7 @@ class EntityManager
 
   #Adds a component to an entity and maps them for quick retrieval
   _addComponent: (entity, component) ->
-    unless component instanceof Bragi.Component
-      throw new Error "Tried to add a component that is not inheriting from Component"
-
-    componentType = Bragi.ComponentTypeManager.getType(component)
+    componentType = Bragi.ComponentTypeManager.getType component
 
     #Checking if we already have this type in our object
     components = @componentsByType[componentType.id]
@@ -57,12 +54,22 @@ class EntityManager
     entity._addBit componentType.bit
 
 
-  getComponent: (entity, component) ->
+  #removes a component from an entity
+  _removeComponent: (entity, componentName) ->
+    componentType = Bragi.ComponentTypeManager.getTypeByName componentName
+    #We get back the part of the array containing this component type
+    components = @componentsByType[componentType.id]
+    #We delete the one corresponding to this entity
+    delete components[entity.id]
+    #And we finally remove the bits in the entity
+    entity._removeBit componentType.bit
+
+
+  _getComponent: (entity, componentName) ->
     #returns a component based on entity/component combinaison
 
   
-  removeComponent: (entity, component) ->
-    #removes a component from an entity
+
 
 
   removeAllComponents: (entity) ->

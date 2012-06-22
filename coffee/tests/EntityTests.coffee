@@ -35,3 +35,34 @@ describe "Entity", ->
 
     it "should throw an error if calling with an object not inheriting from Bragi.Component", ->
       notInheritingFunction.should.Throw Error
+    it "should have a component stored in bits", ->
+      entity.bits.should.not.be.equal 0
+
+
+  describe "Removing a component", ->
+
+    entity = null
+
+    before () ->
+      entity = new Bragi.Entity world, 0
+      component = new BragiTests.DummyComponentHP 100
+      entity.addComponent component
+      entity.removeComponent "DummyComponentHP"
+
+    it "should not have a component stored in bits", ->
+      entity.bits.should.be.equal 0
+
+
+  describe "Getting a component", ->
+
+    entity = null
+    notInheritingFunction = null
+
+    before () ->
+      entity = new Bragi.Entity world, 0
+      component = new BragiTests.DummyComponentHP 100
+      entity.addComponent component
+      test = entity.getComponent BragiTests.DummyComponentHP
+
+    it "should throw an error if calling with an object not inheriting from Bragi.Component", ->
+      fail
