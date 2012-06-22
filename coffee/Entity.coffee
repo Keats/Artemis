@@ -11,6 +11,11 @@ class Entity
     @bits = 0
 
 
+  #Deletes itself using the EntityWorld
+  delete: () ->
+    @world.deleteEntity @
+
+
   #Call that function directly to add any component to an entity
   addComponent: (component) ->
     unless component instanceof Bragi.Component
@@ -29,7 +34,6 @@ class Entity
   #Call the entity manager and returns the component requested
   getComponent: (componentName) ->
     @world.entityManager._getComponent @, componentName
-    null
 
 
 
@@ -43,19 +47,20 @@ class Entity
     @bits &= ~bit
 
 
+  #returns if the entity has been deleted or not
+  isActive: () ->
+    @world.entityManager._isActive @id
 
 
 
+
+  #for debug
   getComponents: () ->
     #returns all the components that this entity has
 
 
-  isActive: () ->
-    #returns if the entity has been deleted or not
 
 
-  delete: () ->
-    #delete this entity
 
 
 Bragi.Entity = Entity

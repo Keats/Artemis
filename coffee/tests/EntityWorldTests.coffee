@@ -47,3 +47,15 @@ describe "World", ->
       entity.should.be.an.instanceof Bragi.Entity
     it "entity should be equal to dummy", ->
       entity.should.be.equal dummy
+
+  describe "Deleting an entity", ->
+
+    entity = null
+
+    before () ->
+      world = new Bragi.EntityWorld()
+      entity = world.createEntity()
+      world.deleteEntity entity
+
+    it "entity should be in the deleted array of EntityWorld", ->
+      world.deleted.should.include entity

@@ -144,3 +144,21 @@ describe "Entity Manager", ->
       components[0][0].should.be.an.instanceof BragiTests.DummyComponentHP
       components[1].should.have.length 1
       components[1][0].should.be.an.instanceof BragiTests.DummyComponentPosition
+
+
+  describe "Removing all components from an entity", ->
+
+    entityManager = null
+    entity = null
+
+
+    before () ->
+      entityManager = new Bragi.EntityManager world
+      entity = entityManager._create()
+      entityManager._addComponent entity, new BragiTests.DummyComponentHP 100
+      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 100
+
+      entityManager._removeAllComponents entity
+
+    it "entity should have not components for this entity in componentsByType", ->
+      Object.keys(entityManager.componentsByType).should.have.length 0

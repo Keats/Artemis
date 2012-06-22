@@ -36,7 +36,7 @@
         return entity.world.should.be.equal(world);
       });
     });
-    return describe("Retrieving an entity", function() {
+    describe("Retrieving an entity", function() {
       var dummy, entity;
       entity = null;
       dummy = null;
@@ -50,6 +50,18 @@
       });
       return it("entity should be equal to dummy", function() {
         return entity.should.be.equal(dummy);
+      });
+    });
+    return describe("Deleting an entity", function() {
+      var entity;
+      entity = null;
+      before(function() {
+        world = new Bragi.EntityWorld();
+        entity = world.createEntity();
+        return world.deleteEntity(entity);
+      });
+      return it("entity should be in the deleted array of EntityWorld", function() {
+        return world.deleted.should.include(entity);
       });
     });
   });

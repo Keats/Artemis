@@ -54,19 +54,48 @@
         return entity.bits.should.be.equal(0);
       });
     });
-    return describe("Getting a component", function() {
-      var entity, notInheritingFunction;
+    describe("Getting a component", function() {
+      var component, entity;
       entity = null;
-      notInheritingFunction = null;
+      component = null;
       before(function() {
-        var component, test;
         entity = new Bragi.Entity(world, 0);
         component = new BragiTests.DummyComponentHP(100);
         entity.addComponent(component);
-        return test = entity.getComponent(BragiTests.DummyComponentHP);
+        return component = entity.getComponent("DummyComponentHP");
       });
-      return it("should throw an error if calling with an object not inheriting from Bragi.Component", function() {
-        return fail;
+      return it("should get a component DummyComponentHP with hp equal to 100", function() {
+        component.should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        return component.hp.should.be.equal(100);
+      });
+    });
+    describe("Deleting itself", function() {
+      var entity;
+      entity = null;
+      before(function() {
+        entity = new Bragi.Entity(world, 0);
+        return entity["delete"]();
+      });
+      return it("entity should be in the deleted array of EntityWorld", function() {
+        return world.deleted.should.include(entity);
+      });
+    });
+    return describe("Check if it's active", function() {
+      var entity, state1, state2;
+      entity = null;
+      state1 = null;
+      state2 = null;
+      before(function() {
+        entity = world.createEntity();
+        state1 = entity.isActive();
+        entity["delete"]();
+        return state2 = entity.isActive();
+      });
+      it("state1 should be active", function() {
+        return state1.should.be["true"];
+      });
+      return it("state2 should be inactive", function() {
+        return state2.should.not.be["true"];
       });
     });
   });

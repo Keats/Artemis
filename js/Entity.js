@@ -12,6 +12,10 @@
       this.bits = 0;
     }
 
+    Entity.prototype["delete"] = function() {
+      return this.world.deleteEntity(this);
+    };
+
     Entity.prototype.addComponent = function(component) {
       if (!(component instanceof Bragi.Component)) {
         throw new Error("Tried to add a component that is not inheriting from Component");
@@ -26,8 +30,7 @@
     };
 
     Entity.prototype.getComponent = function(componentName) {
-      this.world.entityManager._getComponent(this, componentName);
-      return null;
+      return this.world.entityManager._getComponent(this, componentName);
     };
 
     Entity.prototype._addBit = function(bit) {
@@ -38,11 +41,11 @@
       return this.bits &= ~bit;
     };
 
+    Entity.prototype.isActive = function() {
+      return this.world.entityManager._isActive(this.id);
+    };
+
     Entity.prototype.getComponents = function() {};
-
-    Entity.prototype.isActive = function() {};
-
-    Entity.prototype["delete"] = function() {};
 
     return Entity;
 

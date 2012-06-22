@@ -26,7 +26,16 @@
     };
 
     EntityManager.prototype.remove = function(entity) {
-      return delete this.entities[entity.id];
+      delete this.entities[entity.id];
+      return entity = null;
+    };
+
+    EntityManager.prototype._isActive = function(id) {
+      if (this.entities[id]) {
+        return true;
+      } else {
+        return false;
+      }
     };
 
     EntityManager.prototype._addComponent = function(entity, component) {
@@ -49,11 +58,36 @@
       return entity._removeBit(componentType.bit);
     };
 
-    EntityManager.prototype._getComponent = function(entity, componentName) {};
+    EntityManager.prototype._getComponent = function(entity, componentName) {
+      var componentType, components;
+      componentType = Bragi.ComponentTypeManager.getTypeByName(componentName);
+      components = this.componentsByType[componentType.id];
+      if (components) {
+        return components[entity.id];
+      } else {
+        return null;
+      }
+    };
 
-    EntityManager.prototype.removeAllComponents = function(entity) {};
-
-    EntityManager.prototype.isActive = function(id) {};
+    EntityManager.prototype._removeAllComponents = function(entity) {
+      var componentTypes, index, _ref, _results;
+      _ref = this.componentsByType;
+      _results = [];
+      for (index in _ref) {
+        componentTypes = _ref[index];
+        if (entity.id in componentTypes) {
+          delete componentTypes[entity.id];
+          if (Object.keys(componentTypes).length === 0) {
+            _results.push(delete this.componentsByType[index]);
+          } else {
+            _results.push(void 0);
+          }
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
 
     return EntityManager;
 

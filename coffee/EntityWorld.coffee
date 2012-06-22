@@ -25,8 +25,10 @@ class EntityWorld
     @entityManager._getEntity(id)
 
 
+  #Adds an entity to delete in the deleted array
   deleteEntity: (entity) ->
-    #should delete an entity (add it to an array of deleted to process next)
+    if entity not in @deleted
+      @deleted.push entity
 
 
 

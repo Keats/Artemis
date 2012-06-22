@@ -30,9 +30,23 @@ class EntityManager
 
 
   remove: (entity) ->
+    #We remove the entity from the list of entities
     delete @entities[entity.id]
 
     #Now we should remove the components of the entity
+    #@_removeAllComponents entity
+
+    #And we delete the entity itself
+    entity = null
+
+
+  #checks if the entity has been deleted or not
+  _isActive: (id) ->
+    if @entities[id]
+      true
+    else
+      false
+
 
 
   #Adds a component to an entity and maps them for quick retrieval
@@ -65,21 +79,27 @@ class EntityManager
     entity._removeBit componentType.bit
 
 
+  #returns a component based on entity/component combinaison
   _getComponent: (entity, componentName) ->
-    #returns a component based on entity/component combinaison
+    componentType = Bragi.ComponentTypeManager.getTypeByName componentName
+    components = @componentsByType[componentType.id]
 
-  
+    if components 
+      components[entity.id]
+    else
+      null
+      
 
+  #removes all components from an entity, called when deleting an entity
+  _removeAllComponents: (entity) ->
+    for index, componentTypes of @componentsByType
+      if entity.id of componentTypes
+        delete componentTypes[entity.id]
 
+        #Small check to avoid leaving an empty object
+        if Object.keys(componentTypes).length is 0
+          delete @componentsByType[index]
 
-  removeAllComponents: (entity) ->
-    #removes all components from an entity, called when deleting an entity
-
-
-
-
-  isActive: (id) ->
-    #checks if the entity still exists or not
 
 
 Bragi.EntityManager = EntityManager

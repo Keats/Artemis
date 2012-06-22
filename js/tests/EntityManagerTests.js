@@ -121,7 +121,7 @@
         return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
       });
     });
-    return describe("Removing components from entities", function() {
+    describe("Removing components from entities", function() {
       var component, components, entity, entityManager;
       entityManager = null;
       entity = null;
@@ -161,6 +161,21 @@
         components[0][0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
         components[1].should.have.length(1);
         return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
+      });
+    });
+    return describe("Removing all components from an entity", function() {
+      var entity, entityManager;
+      entityManager = null;
+      entity = null;
+      before(function() {
+        entityManager = new Bragi.EntityManager(world);
+        entity = entityManager._create();
+        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(100));
+        return entityManager._removeAllComponents(entity);
+      });
+      return it("entity should have not components for this entity in componentsByType", function() {
+        return Object.keys(entityManager.componentsByType).should.have.length(0);
       });
     });
   });

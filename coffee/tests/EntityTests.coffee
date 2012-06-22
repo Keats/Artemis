@@ -56,13 +56,43 @@ describe "Entity", ->
   describe "Getting a component", ->
 
     entity = null
-    notInheritingFunction = null
+    component = null
 
     before () ->
       entity = new Bragi.Entity world, 0
       component = new BragiTests.DummyComponentHP 100
       entity.addComponent component
-      test = entity.getComponent BragiTests.DummyComponentHP
+      component = entity.getComponent "DummyComponentHP"
 
-    it "should throw an error if calling with an object not inheriting from Bragi.Component", ->
-      fail
+    it "should get a component DummyComponentHP with hp equal to 100", ->
+      component.should.be.an.instanceof BragiTests.DummyComponentHP
+      component.hp.should.be.equal 100
+
+  describe "Deleting itself", ->
+
+    entity = null
+
+    before () ->
+      entity = new Bragi.Entity world, 0
+      entity.delete()
+
+    it "entity should be in the deleted array of EntityWorld", ->
+      world.deleted.should.include entity
+
+  describe "Check if it's active", ->
+
+    entity = null
+    state1 = null
+    state2 = null
+
+    before () ->
+      #need to go through the entity manager for this one
+      entity = world.createEntity()
+      state1 = entity.isActive()
+      entity.delete()
+      state2 = entity.isActive()
+
+    it "state1 should be active", ->
+      state1.should.be.true
+    it "state2 should be inactive", ->
+      state2.should.not.be.true
