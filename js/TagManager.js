@@ -11,11 +11,22 @@
       this.taggedEntities = {};
     }
 
-    TagManager.prototype.add = function(tag, entity) {};
+    TagManager.prototype.register = function(tag, entity) {
+      this.taggedEntities[tag] = entity;
+      return null;
+    };
 
-    TagManager.prototype.remove = function(tag) {};
+    TagManager.prototype.unregister = function(tag) {
+      return delete this.taggedEntities[tag];
+    };
 
-    TagManager.prototype.get = function(tag) {};
+    TagManager.prototype.get = function(tag) {
+      return this.taggedEntities[tag];
+    };
+
+    TagManager.prototype.isRegistered = function(tag) {
+      return tag in this.taggedEntities;
+    };
 
     return TagManager;
 

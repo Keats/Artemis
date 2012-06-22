@@ -27,6 +27,7 @@
 
     EntityManager.prototype.remove = function(entity) {
       delete this.entities[entity.id];
+      this._removeAllComponents(entity);
       return entity = null;
     };
 

@@ -34,7 +34,7 @@ class EntityManager
     delete @entities[entity.id]
 
     #Now we should remove the components of the entity
-    #@_removeAllComponents entity
+    @_removeAllComponents entity
 
     #And we delete the entity itself
     entity = null
@@ -46,7 +46,6 @@ class EntityManager
       true
     else
       false
-
 
 
   #Adds a component to an entity and maps them for quick retrieval

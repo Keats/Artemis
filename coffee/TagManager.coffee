@@ -11,17 +11,25 @@ class TagManager
     @taggedEntities = {}
 
 
-  add: (tag, entity) ->
-    #add to the @taggedEntities dict
+  #add a mapping between a tag and an entity
+  register: (tag, entity) ->
+    @taggedEntities[tag] = entity
+    null
 
 
-  remove: (tag) ->
-    #remove from the @taggedEntities dict
+  #Removes the tagging
+  unregister: (tag) ->
+    delete @taggedEntities[tag]
 
 
+  #Retrieves an entity easily via its tag
   get: (tag) ->
-    #returns the entity from the @taggedEntities dict
+    @taggedEntities[tag]
 
+
+  #Find out if a tag is registered or not
+  isRegistered: (tag) ->
+    tag of @taggedEntities
 
 
 Bragi.TagManager = TagManager

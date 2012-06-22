@@ -151,7 +151,6 @@ describe "Entity Manager", ->
     entityManager = null
     entity = null
 
-
     before () ->
       entityManager = new Bragi.EntityManager world
       entity = entityManager._create()
