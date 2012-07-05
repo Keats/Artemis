@@ -110,7 +110,7 @@
         return _results;
       });
       it("entity should have bits equal 3 (HP + Position components)", function() {
-        return entity.bits.should.be.equal(3);
+        return entity.typeBits.should.be.equal(3);
       });
       return it("should have the object componentsByType referencing all entities/components associations", function() {
         Object.keys(entityManager.componentsByType).should.have.length(2);
@@ -153,7 +153,7 @@
         return _results;
       });
       it("entity should have bits equal 3 (HP + Position components)", function() {
-        return entity.bits.should.be.equal(2);
+        return entity.typeBits.should.be.equal(2);
       });
       return it("should have the object componentsByType referencing all entities/components associations", function() {
         Object.keys(entityManager.componentsByType).should.have.length(2);

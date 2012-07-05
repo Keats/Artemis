@@ -25,10 +25,11 @@
       entity = null;
       notInheritingFunction = null;
       before(function() {
-        var notInheriting;
+        var component, notInheriting;
         entity = new Bragi.Entity(world, 0);
-        entity.addComponent(new BragiTests.DummyComponentHP(100));
-        notInheriting = new Object();
+        component = new BragiTests.DummyComponentHP(100);
+        entity.addComponent(component);
+        notInheriting = {};
         return notInheritingFunction = function(notInheriting) {
           return entityManager._addComponent(entity, notInheriting);
         };
@@ -37,7 +38,7 @@
         return notInheritingFunction.should.Throw(Error);
       });
       return it("should have a component stored in bits", function() {
-        return entity.bits.should.not.be.equal(0);
+        return entity.typeBits.should.not.be.equal(0);
       });
     });
     describe("Removing a component", function() {
@@ -51,7 +52,7 @@
         return entity.removeComponent("DummyComponentHP");
       });
       return it("should not have a component stored in bits", function() {
-        return entity.bits.should.be.equal(0);
+        return entity.typeBits.should.be.equal(0);
       });
     });
     describe("Getting a component", function() {

@@ -9,7 +9,8 @@
     function Entity(world, id) {
       this.world = world;
       this.id = id;
-      this.bits = 0;
+      this.typeBits = 0;
+      this.systemBits = 0;
     }
 
     Entity.prototype["delete"] = function() {
@@ -33,12 +34,20 @@
       return this.world.entityManager._getComponent(this, componentName);
     };
 
-    Entity.prototype._addBit = function(bit) {
-      return this.bits |= bit;
+    Entity.prototype._addTypeBit = function(bit) {
+      return this.typeBits |= bit;
     };
 
-    Entity.prototype._removeBit = function(bit) {
-      return this.bits &= ~bit;
+    Entity.prototype._removeTypeBit = function(bit) {
+      return this.typeBits &= ~bit;
+    };
+
+    Entity.prototype._addSystemBit = function(bit) {
+      return this.systemBits |= bit;
+    };
+
+    Entity.prototype._removeSystemBit = function(bit) {
+      return this.systemBits &= ~bit;
     };
 
     Entity.prototype.isActive = function() {

@@ -101,7 +101,7 @@ describe "Entity Manager", ->
           components[key].push obj[prop]
 
     it "entity should have bits equal 3 (HP + Position components)", ->
-      entity.bits.should.be.equal 3
+      entity.typeBits.should.be.equal 3
     it "should have the object componentsByType referencing all entities/components associations", ->
       Object.keys(entityManager.componentsByType).should.have.length 2
       components[0].should.have.length 2
@@ -137,7 +137,7 @@ describe "Entity Manager", ->
           components[key].push obj[prop]
 
     it "entity should have bits equal 3 (HP + Position components)", ->
-      entity.bits.should.be.equal 2
+      entity.typeBits.should.be.equal 2
     it "should have the object componentsByType referencing all entities/components associations", ->
       Object.keys(entityManager.componentsByType).should.have.length 2
       components[0].should.have.length 1

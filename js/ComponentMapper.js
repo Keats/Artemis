@@ -6,13 +6,15 @@
 
   ComponentMapper = (function() {
 
-    function ComponentMapper(componentClass, world) {
+    function ComponentMapper(componentName, world) {
       this.world = world;
       this.em = world.entityManager;
-      this.componentClass = componentClass;
+      this.componentName = componentName;
     }
 
-    ComponentMapper.prototype.get = function(entity) {};
+    ComponentMapper.prototype.get = function(entity) {
+      return this.em._getComponent(entity, this.componentName);
+    };
 
     return ComponentMapper;
 

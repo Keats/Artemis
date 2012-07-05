@@ -6,14 +6,15 @@ Bragi.ComponentMapper = {}
 class ComponentMapper
 
 
-  constructor: (componentClass, world) ->
+  constructor: (componentName, world) ->
     @world = world
     @em = world.entityManager
-    @componentClass = componentClass
+    @componentName = componentName
 
 
+  #gets the component for the entity
   get: (entity) ->
-    #gets the component for the entity
+    @em._getComponent entity, @componentName
 
 
 

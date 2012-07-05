@@ -5,15 +5,46 @@ Bragi.SystemManager = {}
 # Handles all the systems
 class SystemManager
 
+  _systemBits = {}
+  _pos = 0
 
-  construct: (@world) ->
-    #Maybe have a map with className, object so we could retrieve all the systems by class name 
-    #Also just an array of all the systems
+
+  constructor: (world) ->
+    @world = world
+    #List of systems by type
+    @systems = {}
+    #An array of all the systems
+    @allSystems = []
     
+    
+  #Replaces the SystemBitManager
+  #Stores a reference to a system as a bit
+  _getBitFor: (system) ->
+    bit = _systemBits[system]
+    if not bit
+      bit = 1 << _pos
+      _pos += 1
+      _systemBits[system] = bit
 
+    bit
+
+
+  #Adds a system
   addSystem: (system) ->
-    #Adds a system
-    #gives the @world attribute to the system
+    system.world = @world
+    
+    @systems[system.constructor.name] = system
+
+    if system not in @allSystems
+      @allSystems.push system
+
+    system.bit = @_getBitFor system.constructor.name
+
+
+  #TODO change that, right now using string as type
+  getSystem: (type) ->
+    @systems[type]
+
 
 
   getSystems: () ->

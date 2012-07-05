@@ -8,7 +8,10 @@ class Entity
     @world = world
     @id = id
 
-    @bits = 0
+    #components
+    @typeBits = 0
+    #systems
+    @systemBits = 0
 
 
   #Deletes itself using the EntityWorld
@@ -38,13 +41,23 @@ class Entity
 
 
   #Using bitwise operations as it is very very fast
-  _addBit: (bit) ->
-    @bits |= bit
+  _addTypeBit: (bit) ->
+    @typeBits |= bit
 
 
   #Using bitwise operations as it is very very fast
-  _removeBit: (bit) ->
-    @bits &= ~bit
+  _removeTypeBit: (bit) ->
+    @typeBits &= ~bit
+
+
+  #Using bitwise operations as it is very very fast
+  _addSystemBit: (bit) ->
+    @systemBits |= bit
+
+
+  #Using bitwise operations as it is very very fast
+  _removeSystemBit: (bit) ->
+    @systemBits &= ~bit
 
 
   #returns if the entity has been deleted or not

@@ -64,7 +64,7 @@ class EntityManager
     components[entity.id] = component
 
     #Adding a reference to this component in the entity as bits (fast)
-    entity._addBit componentType.bit
+    entity._addTypeBit componentType.bit
 
 
   #removes a component from an entity
@@ -75,7 +75,7 @@ class EntityManager
     #We delete the one corresponding to this entity
     delete components[entity.id]
     #And we finally remove the bits in the entity
-    entity._removeBit componentType.bit
+    entity._removeTypeBit componentType.bit
 
 
   #returns a component based on entity/component combinaison

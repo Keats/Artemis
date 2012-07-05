@@ -48,7 +48,7 @@
         this.componentsByType[componentType.id] = components;
       }
       components[entity.id] = component;
-      return entity._addBit(componentType.bit);
+      return entity._addTypeBit(componentType.bit);
     };
 
     EntityManager.prototype._removeComponent = function(entity, componentName) {
@@ -56,7 +56,7 @@
       componentType = Bragi.ComponentTypeManager.getTypeByName(componentName);
       components = this.componentsByType[componentType.id];
       delete components[entity.id];
-      return entity._removeBit(componentType.bit);
+      return entity._removeTypeBit(componentType.bit);
     };
 
     EntityManager.prototype._getComponent = function(entity, componentName) {
