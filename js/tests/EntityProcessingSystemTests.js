@@ -29,7 +29,6 @@
         system.world = world;
         system.initialize();
         entities = [entity1, entity2];
-        console.log(entities);
         system.processEntities(entities);
         component1 = entity1.getComponent("DummyComponentHP");
         return component2 = entity2.getComponent("DummyComponentHP");

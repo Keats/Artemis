@@ -11,6 +11,7 @@
       this.entityManager = new Bragi.EntityManager(this);
       this.systemManager = new Bragi.SystemManager(this);
       this.tagManager = new Bragi.TagManager(this);
+      this.groupManager = new Bragi.GroupManager(this);
       this.deleted = [];
     }
 

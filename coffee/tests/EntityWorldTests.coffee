@@ -14,6 +14,8 @@ describe "World", ->
       world.systemManager.should.be.an.instanceof Bragi.SystemManager
     it "should have a Tag Manager", ->
       world.tagManager.should.be.an.instanceof Bragi.TagManager
+    it "should have a Group Manager", ->
+      world.groupManager.should.be.an.instanceof Bragi.GroupManager
     it "should have an empty array called deleted", ->
       world.deleted.should.be.an.instanceof Array
       world.deleted.should.be.empty

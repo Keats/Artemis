@@ -11,6 +11,7 @@ class EntityWorld
     @entityManager = new Bragi.EntityManager @
     @systemManager = new Bragi.SystemManager @
     @tagManager = new Bragi.TagManager @
+    @groupManager = new Bragi.GroupManager @
 
     @deleted = []
 

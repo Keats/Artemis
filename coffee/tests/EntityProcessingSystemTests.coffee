@@ -37,7 +37,6 @@ describe "EntityProcessingSystems", ->
       system.initialize()
 
       entities = [entity1, entity2]
-      console.log entities
       system.processEntities entities
 
       component1 = entity1.getComponent "DummyComponentHP"

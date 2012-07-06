@@ -17,6 +17,9 @@
       it("should have a Tag Manager", function() {
         return world.tagManager.should.be.an["instanceof"](Bragi.TagManager);
       });
+      it("should have a Group Manager", function() {
+        return world.groupManager.should.be.an["instanceof"](Bragi.GroupManager);
+      });
       return it("should have an empty array called deleted", function() {
         world.deleted.should.be.an["instanceof"](Array);
         return world.deleted.should.be.empty;
