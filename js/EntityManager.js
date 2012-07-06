@@ -11,6 +11,8 @@
       this.entities = {};
       this.componentsByType = {};
       this.nextId = 0;
+      this.count = 0;
+      this.totalCreated = 0;
     }
 
     EntityManager.prototype._create = function() {
@@ -18,6 +20,8 @@
       entity = new Bragi.Entity(this.world, this.nextId);
       this.nextId++;
       this.entities[entity.id] = entity;
+      this.count++;
+      this.totalCreated++;
       return entity;
     };
 
@@ -28,6 +32,7 @@
     EntityManager.prototype.remove = function(entity) {
       delete this.entities[entity.id];
       this._removeAllComponents(entity);
+      this.count--;
       return entity = null;
     };
 
@@ -68,6 +73,22 @@
       } else {
         return null;
       }
+    };
+
+    EntityManager.prototype._getAllComponents = function(entity) {
+      var allComponents, component, components, index, _ref;
+      allComponents = [];
+      _ref = this.componentsByType;
+      for (index in _ref) {
+        components = _ref[index];
+        if (components) {
+          component = components[entity.id];
+          if (component) {
+            allComponents.push(component);
+          }
+        }
+      }
+      return allComponents;
     };
 
     EntityManager.prototype._removeAllComponents = function(entity) {

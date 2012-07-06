@@ -42,6 +42,17 @@
       return this.systems[type];
     };
 
+    SystemManager.prototype.initializeAll = function() {
+      var system, _i, _len, _ref, _results;
+      _ref = this.allSystems;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        system = _ref[_i];
+        _results.push(system.initialize());
+      }
+      return _results;
+    };
+
     SystemManager.prototype.getSystems = function() {};
 
     return SystemManager;

@@ -92,7 +92,7 @@
         entityManager = new Bragi.EntityManager(world);
         entity = entityManager._create();
         entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
         entity2 = entityManager._create();
         entityManager._addComponent(entity2, new BragiTests.DummyComponentHP(100));
         _results = [];
@@ -134,7 +134,7 @@
         entityManager = new Bragi.EntityManager(world);
         entity = entityManager._create();
         entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
         entity2 = entityManager._create();
         entityManager._addComponent(entity2, new BragiTests.DummyComponentHP(100));
         entityManager._removeComponent(entity, "DummyComponentHP");
@@ -163,7 +163,7 @@
         return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
       });
     });
-    return describe("Removing all components from an entity", function() {
+    describe("Removing all components from an entity", function() {
       var entity, entityManager;
       entityManager = null;
       entity = null;
@@ -171,11 +171,50 @@
         entityManager = new Bragi.EntityManager(world);
         entity = entityManager._create();
         entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
         return entityManager._removeAllComponents(entity);
       });
       return it("entity should have not components for this entity in componentsByType", function() {
         return Object.keys(entityManager.componentsByType).should.have.length(0);
+      });
+    });
+    describe("Getting a component from an entity", function() {
+      var component, entity, entityManager;
+      entityManager = null;
+      entity = null;
+      component = null;
+      before(function() {
+        entityManager = new Bragi.EntityManager(world);
+        entity = entityManager._create();
+        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
+        return component = entityManager._getComponent(entity, "DummyComponentHP");
+      });
+      return it("should have retrieved the DummyComponentHP component", function() {
+        return component.should.be.an["instanceof"](BragiTests.DummyComponentHP);
+      });
+    });
+    return describe("Getting all components of an entity", function() {
+      var components, entity, entityManager;
+      entityManager = null;
+      entity = null;
+      components = null;
+      before(function() {
+        entityManager = new Bragi.EntityManager(world);
+        entity = entityManager._create();
+        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
+        return components = entityManager._getAllComponents(entity);
+      });
+      it("should be an array with a length of 2", function() {
+        components.should.be.an["instanceof"](Array);
+        return components.should.have.length(2);
+      });
+      it("should have the DummyComponentHP as [0]", function() {
+        return components[0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
+      });
+      return it("should have the DummyComponentPosition as [1]", function() {
+        return components[1].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
       });
     });
   });

@@ -13,6 +13,11 @@ class EntityManager
     @componentsByType = {}
     @nextId = 0
 
+    #Number of active entities
+    @count = 0
+    #Number of entities created
+    @totalCreated = 0
+
 
   #Register an entity in the entity manager, called by World.createEntity
   _create: () ->
@@ -20,6 +25,9 @@ class EntityManager
 
     @nextId++
     @entities[entity.id] = entity
+
+    @count++
+    @totalCreated++
 
     entity
 
@@ -35,6 +43,8 @@ class EntityManager
 
     #Now we should remove the components of the entity
     @_removeAllComponents entity
+
+    @count--
 
     #And we delete the entity itself
     entity = null
@@ -88,6 +98,21 @@ class EntityManager
     else
       null
       
+
+  #returns all components for a given entity
+  #for debug
+  _getAllComponents: (entity) ->
+    allComponents = []
+    
+    for index, components of @componentsByType
+      if components
+        component = components[entity.id]
+        if component
+          allComponents.push component
+
+    allComponents
+
+
 
   #removes all components from an entity, called when deleting an entity
   _removeAllComponents: (entity) ->

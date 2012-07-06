@@ -49,3 +49,20 @@ describe "System Manager", ->
 
     it "system and systemFound should be equal", ->
       system.should.be.equal systemFound
+
+
+  describe "Initializing all systems", ->
+    systemFound = null
+
+    before () ->
+      system = new BragiTests.DummySystemHP
+      world.systemManager.addSystem system
+
+      world.systemManager.initializeAll()
+
+      systemFound = world.systemManager.getSystem "DummySystemHP"
+
+
+    it "should have a dummyComponentHPMapper parameter", ->
+      systemFound.dummyComponentHPMapper.should.be.an.instanceof Bragi.ComponentMapper
+      systemFound.dummyComponentHPMapper.componentName.should.be.equal "DummyComponentHP"

@@ -39,7 +39,7 @@
         return world.systemManager.allSystems.should.contain(system);
       });
     });
-    return describe("Getting a system", function() {
+    describe("Getting a system", function() {
       var system, systemFound;
       system = null;
       systemFound = null;
@@ -50,6 +50,21 @@
       });
       return it("system and systemFound should be equal", function() {
         return system.should.be.equal(systemFound);
+      });
+    });
+    return describe("Initializing all systems", function() {
+      var systemFound;
+      systemFound = null;
+      before(function() {
+        var system;
+        system = new BragiTests.DummySystemHP;
+        world.systemManager.addSystem(system);
+        world.systemManager.initializeAll();
+        return systemFound = world.systemManager.getSystem("DummySystemHP");
+      });
+      return it("should have a dummyComponentHPMapper parameter", function() {
+        systemFound.dummyComponentHPMapper.should.be.an["instanceof"](Bragi.ComponentMapper);
+        return systemFound.dummyComponentHPMapper.componentName.should.be.equal("DummyComponentHP");
       });
     });
   });

@@ -6,7 +6,7 @@ class System
 
   constructor: (components...) ->
     @world = null
-    #The actives components associated
+    #The active components associated
     @actives = {}
     #Should the system be processed ?
     @enabled = true

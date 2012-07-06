@@ -46,6 +46,11 @@ class SystemManager
     @systems[type]
 
 
+  #Initialize all the systems added
+  initializeAll: () ->
+    for system in @allSystems
+      system.initialize()
+
 
   getSystems: () ->
     #returns all the systems

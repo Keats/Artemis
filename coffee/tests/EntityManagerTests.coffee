@@ -90,7 +90,7 @@ describe "Entity Manager", ->
       entityManager = new Bragi.EntityManager world
       entity = entityManager._create()
       entityManager._addComponent entity, new BragiTests.DummyComponentHP 100
-      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 100
+      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 1,1,1
 
       entity2 = entityManager._create()
       entityManager._addComponent entity2, new BragiTests.DummyComponentHP 100
@@ -124,7 +124,7 @@ describe "Entity Manager", ->
       entityManager = new Bragi.EntityManager world
       entity = entityManager._create()
       entityManager._addComponent entity, new BragiTests.DummyComponentHP 100
-      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 100
+      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 1,1,1
 
       entity2 = entityManager._create()
       entityManager._addComponent entity2, new BragiTests.DummyComponentHP 100
@@ -155,9 +155,51 @@ describe "Entity Manager", ->
       entityManager = new Bragi.EntityManager world
       entity = entityManager._create()
       entityManager._addComponent entity, new BragiTests.DummyComponentHP 100
-      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 100
+      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 1,1,1
 
       entityManager._removeAllComponents entity
 
     it "entity should have not components for this entity in componentsByType", ->
       Object.keys(entityManager.componentsByType).should.have.length 0
+
+
+  describe "Getting a component from an entity", ->
+
+    entityManager = null
+    entity = null
+    component = null
+
+    before () ->
+      entityManager = new Bragi.EntityManager world
+      entity = entityManager._create()
+      entityManager._addComponent entity, new BragiTests.DummyComponentHP 100
+      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 1,1,1
+
+      component = entityManager._getComponent entity, "DummyComponentHP"
+
+
+    it "should have retrieved the DummyComponentHP component", ->
+      component.should.be.an.instanceof BragiTests.DummyComponentHP
+
+
+  describe "Getting all components of an entity", ->
+
+    entityManager = null
+    entity = null
+    components = null
+
+    before () ->
+      entityManager = new Bragi.EntityManager world
+      entity = entityManager._create()
+      entityManager._addComponent entity, new BragiTests.DummyComponentHP 100
+      entityManager._addComponent entity, new BragiTests.DummyComponentPosition 1,1,1
+
+      components = entityManager._getAllComponents entity
+
+    it "should be an array with a length of 2", ->
+      components.should.be.an.instanceof Array
+      components.should.have.length 2
+    it "should have the DummyComponentHP as [0]", ->
+      components[0].should.be.an.instanceof BragiTests.DummyComponentHP
+    it "should have the DummyComponentPosition as [1]", ->
+      components[1].should.be.an.instanceof BragiTests.DummyComponentPosition
