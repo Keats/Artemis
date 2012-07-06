@@ -52,9 +52,5 @@ class SystemManager
       system.initialize()
 
 
-  getSystems: () ->
-    #returns all the systems
-
-
 
 Bragi.SystemManager = SystemManager

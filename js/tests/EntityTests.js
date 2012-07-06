@@ -81,7 +81,7 @@
         return world.deleted.should.include(entity);
       });
     });
-    return describe("Check if it's active", function() {
+    describe("Checking if it's active", function() {
       var entity, state1, state2;
       entity = null;
       state1 = null;
@@ -97,6 +97,28 @@
       });
       return it("state2 should be inactive", function() {
         return state2.should.not.be["true"];
+      });
+    });
+    describe("Tagging itself", function() {
+      var entity;
+      entity = null;
+      before(function() {
+        entity = world.createEntity();
+        return entity.setTag("testing");
+      });
+      return it("should have tagged the entity with testing", function() {
+        return world.tagManager.get("testing").should.be.equal(entity);
+      });
+    });
+    return describe("Adding itself to a group", function() {
+      var entity;
+      entity = null;
+      before(function() {
+        entity = world.createEntity();
+        return entity.setGroup("testing");
+      });
+      return it("should have added the entity to the testing group", function() {
+        return world.groupManager.get("testing")[0].should.be.equal(entity);
       });
     });
   });

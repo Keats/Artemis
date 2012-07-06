@@ -54,6 +54,14 @@
       return this.world.entityManager._isActive(this.id);
     };
 
+    Entity.prototype.setGroup = function(group) {
+      return this.world.groupManager.set(group, this);
+    };
+
+    Entity.prototype.setTag = function(tag) {
+      return this.world.tagManager.register(tag, this);
+    };
+
     Entity.prototype.getComponents = function() {};
 
     return Entity;

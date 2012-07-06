@@ -1,7 +1,7 @@
 
 Bragi.GroupManager = {}
 
-# This class is only used to be extended from
+
 class GroupManager
 
   constructor: (world) ->

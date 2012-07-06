@@ -53,8 +53,6 @@
       return _results;
     };
 
-    SystemManager.prototype.getSystems = function() {};
-
     return SystemManager;
 
   })();

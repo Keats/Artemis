@@ -82,7 +82,8 @@ describe "Entity", ->
     it "entity should be in the deleted array of EntityWorld", ->
       world.deleted.should.include entity
 
-  describe "Check if it's active", ->
+
+  describe "Checking if it's active", ->
 
     entity = null
     state1 = null
@@ -99,3 +100,27 @@ describe "Entity", ->
       state1.should.be.true
     it "state2 should be inactive", ->
       state2.should.not.be.true
+
+
+  describe "Tagging itself", ->
+
+    entity = null
+
+    before () ->
+      entity = world.createEntity()
+      entity.setTag "testing"
+
+    it "should have tagged the entity with testing", ->
+      world.tagManager.get("testing").should.be.equal entity
+
+
+  describe "Adding itself to a group", ->
+
+    entity = null
+
+    before () ->
+      entity = world.createEntity()
+      entity.setGroup "testing"
+
+    it "should have added the entity to the testing group", ->
+      world.groupManager.get("testing")[0].should.be.equal entity

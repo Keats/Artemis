@@ -65,7 +65,13 @@ class Entity
     @world.entityManager._isActive @id
 
 
+  #Shortcut to add the entity to a group
+  setGroup: (group) ->
+    @world.groupManager.set group, @
 
+  #Shortcut to add the entity to a group
+  setTag: (tag) ->
+    @world.tagManager.register tag, @
 
   #for debug
   getComponents: () ->
