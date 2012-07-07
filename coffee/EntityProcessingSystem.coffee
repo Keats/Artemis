@@ -8,12 +8,12 @@ class EntityProcessingSystem extends Bragi.System
     super
 
 
-  process: (entity) ->
+  processEntity: (entity) ->
     #TO OVERRIDE
 
   processEntities: (entities) ->
-    for entity in entities
-      @process entity
+    for index, entity of entities
+      @processEntity entity
 
 
 

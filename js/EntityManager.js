@@ -29,6 +29,17 @@
       return this.entities[id];
     };
 
+    EntityManager.prototype.refresh = function(entity) {
+      var system, _i, _len, _ref, _results;
+      _ref = this.world.systemManager.allSystems;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        system = _ref[_i];
+        _results.push(system.change(entity));
+      }
+      return _results;
+    };
+
     EntityManager.prototype.remove = function(entity) {
       delete this.entities[entity.id];
       this._removeAllComponents(entity);

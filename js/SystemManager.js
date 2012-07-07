@@ -35,7 +35,8 @@
       if (__indexOf.call(this.allSystems, system) < 0) {
         this.allSystems.push(system);
       }
-      return system.bit = this._getBitFor(system.constructor.name);
+      system.bit = this._getBitFor(system.constructor.name);
+      return system;
     };
 
     SystemManager.prototype.getSystem = function(type) {

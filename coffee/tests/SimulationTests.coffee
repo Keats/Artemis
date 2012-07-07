@@ -1,0 +1,65 @@
+
+describe "Game simulation", ->
+
+  describe "Creating the game and not calling refresh on the entity", ->
+
+    world = null
+    entity = null
+    movementSystem = null
+
+    before () ->
+      world = new Bragi.EntityWorld()
+
+      movementSystem = world.systemManager.addSystem(new BragiTests.DummySystemMovement)
+
+      entity = world.createEntity()
+
+      entity.addComponent new BragiTests.DummyComponentPosition 1,1,1
+      entity.addComponent new BragiTests.DummyComponentVelocity 2, 25
+
+      world.systemManager.initializeAll()
+
+      world.loopStart()
+
+      movementSystem.process()
+
+    it "should have added the system", ->
+      world.systemManager.allSystems[0].should.be.an.instanceof BragiTests.DummySystemMovement
+      world.systemManager.systems.hasOwnProperty("DummySystemMovement").should.be.true
+    it "should not have registered the entity as active", ->
+      Object.keys(movementSystem.actives).should.have.length 0
+
+
+  describe "Creating the game and calling refresh on the entity", ->
+
+    world = null
+    entity = null
+    movementSystem = null
+    component = null
+
+    before () ->
+      world = new Bragi.EntityWorld()
+
+      movementSystem = world.systemManager.addSystem(new BragiTests.DummySystemMovement)
+
+      entity = world.createEntity()
+
+      entity.addComponent new BragiTests.DummyComponentPosition 1,1,1
+      entity.addComponent new BragiTests.DummyComponentVelocity 2, 25
+      entity.refresh()
+
+      world.systemManager.initializeAll()
+
+      world.loopStart()
+
+      movementSystem.process()
+
+      component = entity.getComponent "DummyComponentPosition"
+
+    it "should have added the system", ->
+      world.systemManager.allSystems[0].should.be.an.instanceof BragiTests.DummySystemMovement
+      world.systemManager.systems.hasOwnProperty("DummySystemMovement").should.be.true
+    it "should have registered the entity as active", ->
+      Object.keys(movementSystem.actives).should.have.length 1
+    it "should have modified the x position of the component", ->
+      component.x.should.be.equal 3

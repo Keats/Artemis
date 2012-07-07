@@ -93,7 +93,7 @@ describe "Entity", ->
       #need to go through the entity manager for this one
       entity = world.createEntity()
       state1 = entity.isActive()
-      entity.delete()
+      world.entityManager.remove entity
       state2 = entity.isActive()
 
     it "state1 should be active", ->

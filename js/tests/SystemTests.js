@@ -25,7 +25,7 @@
         system = new BragiTests.DummySystemHP;
         system.world = world;
         system.initialize();
-        system.process(entity);
+        system.processEntity(entity);
         return component = entity.getComponent("DummyComponentHP");
       });
       it("should use the System constructor and have typeFlags equal to 1 since we added 1 component", function() {

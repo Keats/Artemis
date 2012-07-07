@@ -18,14 +18,14 @@
       return EntityProcessingSystem.__super__.construct.apply(this, arguments);
     };
 
-    EntityProcessingSystem.prototype.process = function(entity) {};
+    EntityProcessingSystem.prototype.processEntity = function(entity) {};
 
     EntityProcessingSystem.prototype.processEntities = function(entities) {
-      var entity, _i, _len, _results;
+      var entity, index, _results;
       _results = [];
-      for (_i = 0, _len = entities.length; _i < _len; _i++) {
-        entity = entities[_i];
-        _results.push(this.process(entity));
+      for (index in entities) {
+        entity = entities[index];
+        _results.push(this.processEntity(entity));
       }
       return _results;
     };

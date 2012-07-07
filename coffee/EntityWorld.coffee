@@ -14,6 +14,9 @@ class EntityWorld
     @groupManager = new Bragi.GroupManager @
 
     @deleted = []
+    @refreshed = []
+
+    @delta = 0
 
 
   #Creates an entity and do all the background tasks
@@ -32,10 +35,20 @@ class EntityWorld
       @deleted.push entity
 
 
+  #Mark an entity as needing to refresh
+  refreshEntity: (entity) ->
+    @refreshed.push entity
 
 
-  getEntityByTag: (tag) ->
-    #should return the entity by looking at the tag
+  #Main loop of the framework
+  loopStart: () ->
+    for entity in @refreshed
+      @entityManager.refresh entity
+    @refreshed = []
+    
+    for entity in @deleted
+      @entityManager.remove entity
+    @deleted = []
 
 
 Bragi.EntityWorld = EntityWorld

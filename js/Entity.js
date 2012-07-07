@@ -34,6 +34,10 @@
       return this.world.entityManager._getComponent(this, componentName);
     };
 
+    Entity.prototype.refresh = function() {
+      return this.world.refreshEntity(this);
+    };
+
     Entity.prototype._addTypeBit = function(bit) {
       return this.typeBits |= bit;
     };

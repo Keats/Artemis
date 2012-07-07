@@ -39,6 +39,9 @@ class Entity
     @world.entityManager._getComponent @, componentName
 
 
+  refresh: () ->
+    @world.refreshEntity @
+
 
   #Using bitwise operations as it is very very fast
   _addTypeBit: (bit) ->

@@ -37,6 +37,12 @@ class EntityManager
     @entities[id]
 
 
+  #Call refresh when adding/removing components
+  refresh: (entity) ->    
+    for system in @world.systemManager.allSystems
+      system.change entity
+
+
   remove: (entity) ->
     #We remove the entity from the list of entities
     delete @entities[entity.id]

@@ -89,7 +89,7 @@
       before(function() {
         entity = world.createEntity();
         state1 = entity.isActive();
-        entity["delete"]();
+        world.entityManager.remove(entity);
         return state2 = entity.isActive();
       });
       it("state1 should be active", function() {

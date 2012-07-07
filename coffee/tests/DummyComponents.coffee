@@ -3,6 +3,7 @@ window.BragiTests = {}
 
 window.BragiTests.DummyComponentHP = {}
 window.BragiTests.DummyComponentPosition = {}
+window.BragiTests.DummyComponentVelocity = {}
 window.BragiTests.DummyComponentName = {}
 
 class DummyComponentHP extends Bragi.Component
@@ -17,6 +18,12 @@ class DummyComponentPosition extends Bragi.Component
 
 
 
+class DummyComponentVelocity extends Bragi.Component
+
+  constructor: (@velocity, @angle) ->
+
+
+
 class DummyComponentName extends Bragi.Component
 
   constructor: (@name) ->
@@ -24,4 +31,5 @@ class DummyComponentName extends Bragi.Component
 
 window.BragiTests.DummyComponentHP = DummyComponentHP
 window.BragiTests.DummyComponentPosition = DummyComponentPosition
+window.BragiTests.DummyComponentVelocity = DummyComponentVelocity
 window.BragiTests.DummyComponentName = DummyComponentName

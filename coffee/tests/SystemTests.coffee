@@ -30,7 +30,7 @@ describe "Systems", ->
       system.world = world
       system.initialize()
 
-      system.process entity
+      system.processEntity entity
 
       component = entity.getComponent "DummyComponentHP"
 

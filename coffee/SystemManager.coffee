@@ -39,6 +39,8 @@ class SystemManager
       @allSystems.push system
 
     system.bit = @_getBitFor system.constructor.name
+    
+    system
 
 
   #TODO change that, right now using string as type

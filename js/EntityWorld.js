@@ -13,6 +13,8 @@
       this.tagManager = new Bragi.TagManager(this);
       this.groupManager = new Bragi.GroupManager(this);
       this.deleted = [];
+      this.refreshed = [];
+      this.delta = 0;
     }
 
     EntityWorld.prototype.createEntity = function() {
@@ -29,7 +31,25 @@
       }
     };
 
-    EntityWorld.prototype.getEntityByTag = function(tag) {};
+    EntityWorld.prototype.refreshEntity = function(entity) {
+      return this.refreshed.push(entity);
+    };
+
+    EntityWorld.prototype.loopStart = function() {
+      var entity, _i, _j, _len, _len1, _ref, _ref1;
+      _ref = this.refreshed;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        entity = _ref[_i];
+        this.entityManager.refresh(entity);
+      }
+      this.refreshed = [];
+      _ref1 = this.deleted;
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        entity = _ref1[_j];
+        this.entityManager.remove(entity);
+      }
+      return this.deleted = [];
+    };
 
     return EntityWorld;
 
