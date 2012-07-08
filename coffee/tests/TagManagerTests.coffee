@@ -5,7 +5,7 @@ describe "Tag Manager", ->
   entity = null
 
   before () ->
-    world = new Bragi.EntityWorld()
+    world = new Artemis.EntityWorld()
     entity = world.createEntity()
 
   describe "Registering a tag", ->

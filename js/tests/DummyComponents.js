@@ -4,15 +4,15 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  window.BragiTests = {};
+  window.ArtemisTests = {};
 
-  window.BragiTests.DummyComponentHP = {};
+  window.ArtemisTests.DummyComponentHP = {};
 
-  window.BragiTests.DummyComponentPosition = {};
+  window.ArtemisTests.DummyComponentPosition = {};
 
-  window.BragiTests.DummyComponentVelocity = {};
+  window.ArtemisTests.DummyComponentVelocity = {};
 
-  window.BragiTests.DummyComponentName = {};
+  window.ArtemisTests.DummyComponentName = {};
 
   DummyComponentHP = (function(_super) {
 
@@ -24,7 +24,7 @@
 
     return DummyComponentHP;
 
-  })(Bragi.Component);
+  })(Artemis.Component);
 
   DummyComponentPosition = (function(_super) {
 
@@ -38,7 +38,7 @@
 
     return DummyComponentPosition;
 
-  })(Bragi.Component);
+  })(Artemis.Component);
 
   DummyComponentVelocity = (function(_super) {
 
@@ -51,7 +51,7 @@
 
     return DummyComponentVelocity;
 
-  })(Bragi.Component);
+  })(Artemis.Component);
 
   DummyComponentName = (function(_super) {
 
@@ -63,14 +63,14 @@
 
     return DummyComponentName;
 
-  })(Bragi.Component);
+  })(Artemis.Component);
 
-  window.BragiTests.DummyComponentHP = DummyComponentHP;
+  window.ArtemisTests.DummyComponentHP = DummyComponentHP;
 
-  window.BragiTests.DummyComponentPosition = DummyComponentPosition;
+  window.ArtemisTests.DummyComponentPosition = DummyComponentPosition;
 
-  window.BragiTests.DummyComponentVelocity = DummyComponentVelocity;
+  window.ArtemisTests.DummyComponentVelocity = DummyComponentVelocity;
 
-  window.BragiTests.DummyComponentName = DummyComponentName;
+  window.ArtemisTests.DummyComponentName = DummyComponentName;
 
 }).call(this);

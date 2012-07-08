@@ -1,5 +1,5 @@
 
-Bragi.SystemManager = {}
+Artemis.SystemManager = {}
 
 
 # Handles all the systems
@@ -55,4 +55,4 @@ class SystemManager
 
 
 
-Bragi.SystemManager = SystemManager
+Artemis.SystemManager = SystemManager

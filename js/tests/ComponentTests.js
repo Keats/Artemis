@@ -6,10 +6,10 @@
       var component;
       component = null;
       before(function() {
-        return component = new BragiTests.DummyComponentHP(100);
+        return component = new ArtemisTests.DummyComponentHP(100);
       });
-      return it("should inherit from Bragi.Component", function() {
-        return component.should.be.an["instanceof"](Bragi.Component);
+      return it("should inherit from Artemis.Component", function() {
+        return component.should.be.an["instanceof"](Artemis.Component);
       });
     });
   });

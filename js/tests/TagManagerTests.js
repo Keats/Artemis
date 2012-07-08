@@ -6,7 +6,7 @@
     world = null;
     entity = null;
     before(function() {
-      world = new Bragi.EntityWorld();
+      world = new Artemis.EntityWorld();
       return entity = world.createEntity();
     });
     describe("Registering a tag", function() {

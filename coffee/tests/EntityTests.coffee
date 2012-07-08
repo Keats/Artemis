@@ -4,17 +4,17 @@ describe "Entity", ->
   world = null
 
   before () ->
-    world = new Bragi.EntityWorld()
+    world = new Artemis.EntityWorld()
 
   describe "Instantiation", ->
 
     entity = null
 
     before () ->
-      entity = new Bragi.Entity world, 0
+      entity = new Artemis.Entity world, 0
       
     it "should have the world instance as property", ->
-      entity.world.should.be.an.instanceof Bragi.EntityWorld
+      entity.world.should.be.an.instanceof Artemis.EntityWorld
     it "should have an id equal to 0", ->
       entity.id.should.be.equal 0
 
@@ -25,9 +25,9 @@ describe "Entity", ->
     notInheritingFunction = null
 
     before () ->
-      entity = new Bragi.Entity world, 0
+      entity = new Artemis.Entity world, 0
 
-      component = new BragiTests.DummyComponentHP 100
+      component = new ArtemisTests.DummyComponentHP 100
       entity.addComponent component
 
       notInheriting = {}
@@ -36,7 +36,7 @@ describe "Entity", ->
         entityManager._addComponent entity, notInheriting
 
 
-    it "should throw an error if calling with an object not inheriting from Bragi.Component", ->
+    it "should throw an error if calling with an object not inheriting from Artemis.Component", ->
       notInheritingFunction.should.Throw Error
     it "should have a component stored in bits", ->
       entity.typeBits.should.not.be.equal 0
@@ -47,8 +47,8 @@ describe "Entity", ->
     entity = null
 
     before () ->
-      entity = new Bragi.Entity world, 0
-      component = new BragiTests.DummyComponentHP 100
+      entity = new Artemis.Entity world, 0
+      component = new ArtemisTests.DummyComponentHP 100
       entity.addComponent component
       entity.removeComponent "DummyComponentHP"
 
@@ -62,13 +62,13 @@ describe "Entity", ->
     component = null
 
     before () ->
-      entity = new Bragi.Entity world, 0
-      component = new BragiTests.DummyComponentHP 100
+      entity = new Artemis.Entity world, 0
+      component = new ArtemisTests.DummyComponentHP 100
       entity.addComponent component
       component = entity.getComponent "DummyComponentHP"
 
     it "should get a component DummyComponentHP with hp equal to 100", ->
-      component.should.be.an.instanceof BragiTests.DummyComponentHP
+      component.should.be.an.instanceof ArtemisTests.DummyComponentHP
       component.hp.should.be.equal 100
 
   describe "Deleting itself", ->
@@ -76,7 +76,7 @@ describe "Entity", ->
     entity = null
 
     before () ->
-      entity = new Bragi.Entity world, 0
+      entity = new Artemis.Entity world, 0
       entity.delete()
 
     it "entity should be in the deleted array of EntityWorld", ->

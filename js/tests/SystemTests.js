@@ -6,7 +6,7 @@
       var system;
       system = null;
       before(function() {
-        return system = new Bragi.System("DummyComponentHP", "DummyComponentPosition");
+        return system = new Artemis.System("DummyComponentHP", "DummyComponentPosition");
       });
       return it("should have typeFlags equal to 3 since we added 2 components", function() {
         return system.typeFlags.should.be.equal(3);
@@ -18,11 +18,11 @@
       component = null;
       before(function() {
         var entity, world;
-        world = new Bragi.EntityWorld();
-        entity = new Bragi.Entity(world, 0);
-        component = new BragiTests.DummyComponentHP(100);
+        world = new Artemis.EntityWorld();
+        entity = new Artemis.Entity(world, 0);
+        component = new ArtemisTests.DummyComponentHP(100);
         entity.addComponent(component);
-        system = new BragiTests.DummySystemHP;
+        system = new ArtemisTests.DummySystemHP;
         system.world = world;
         system.initialize();
         system.processEntity(entity);

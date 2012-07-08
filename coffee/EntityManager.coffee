@@ -1,5 +1,5 @@
 
-Bragi.EntityManager = {}
+Artemis.EntityManager = {}
 
 
 #Handles all the entities
@@ -21,7 +21,7 @@ class EntityManager
 
   #Register an entity in the entity manager, called by World.createEntity
   _create: () ->
-    entity = new Bragi.Entity @world, @nextId
+    entity = new Artemis.Entity @world, @nextId
 
     @nextId++
     @entities[entity.id] = entity
@@ -66,7 +66,7 @@ class EntityManager
 
   #Adds a component to an entity and maps them for quick retrieval
   _addComponent: (entity, component) ->
-    componentType = Bragi.ComponentTypeManager.getType component
+    componentType = Artemis.ComponentTypeManager.getType component
 
     #Checking if we already have this type in our object
     components = @componentsByType[componentType.id]
@@ -85,7 +85,7 @@ class EntityManager
 
   #removes a component from an entity
   _removeComponent: (entity, componentName) ->
-    componentType = Bragi.ComponentTypeManager.getTypeByName componentName
+    componentType = Artemis.ComponentTypeManager.getTypeByName componentName
     #We get back the part of the array containing this component type
     components = @componentsByType[componentType.id]
     #We delete the one corresponding to this entity
@@ -96,7 +96,7 @@ class EntityManager
 
   #returns a component based on entity/component combinaison
   _getComponent: (entity, componentName) ->
-    componentType = Bragi.ComponentTypeManager.getTypeByName componentName
+    componentType = Artemis.ComponentTypeManager.getTypeByName componentName
     components = @componentsByType[componentType.id]
 
     if components 
@@ -132,4 +132,4 @@ class EntityManager
 
 
 
-Bragi.EntityManager = EntityManager
+Artemis.EntityManager = EntityManager

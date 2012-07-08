@@ -2,7 +2,7 @@
 (function() {
   var TagManager;
 
-  Bragi.TagManager = {};
+  Artemis.TagManager = {};
 
   TagManager = (function() {
 
@@ -32,6 +32,6 @@
 
   })();
 
-  Bragi.TagManager = TagManager;
+  Artemis.TagManager = TagManager;
 
 }).call(this);

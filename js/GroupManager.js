@@ -2,7 +2,7 @@
 (function() {
   var GroupManager;
 
-  Bragi.GroupManager = {};
+  Artemis.GroupManager = {};
 
   GroupManager = (function() {
 
@@ -48,6 +48,6 @@
 
   })();
 
-  Bragi.GroupManager = GroupManager;
+  Artemis.GroupManager = GroupManager;
 
 }).call(this);

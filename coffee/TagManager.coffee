@@ -1,5 +1,5 @@
 
-Bragi.TagManager = {}
+Artemis.TagManager = {}
 
 
 #Can be used to tag some entities, like the player, for easy retrieval
@@ -32,4 +32,4 @@ class TagManager
     tag of @taggedEntities
 
 
-Bragi.TagManager = TagManager
+Artemis.TagManager = TagManager

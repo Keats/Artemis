@@ -2,7 +2,7 @@
 (function() {
   var Component;
 
-  Bragi.Component = {};
+  Artemis.Component = {};
 
   Component = (function() {
 
@@ -12,6 +12,6 @@
 
   })();
 
-  Bragi.Component = Component;
+  Artemis.Component = Component;
 
 }).call(this);

@@ -3,7 +3,7 @@
   var SystemManager,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  Bragi.SystemManager = {};
+  Artemis.SystemManager = {};
 
   SystemManager = (function() {
     var _pos, _systemBits;
@@ -58,6 +58,6 @@
 
   })();
 
-  Bragi.SystemManager = SystemManager;
+  Artemis.SystemManager = SystemManager;
 
 }).call(this);

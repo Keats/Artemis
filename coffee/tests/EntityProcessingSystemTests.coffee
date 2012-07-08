@@ -7,7 +7,7 @@ describe "EntityProcessingSystems", ->
     system = null
 
     before () ->
-      system = new BragiTests.DummySystemHP
+      system = new ArtemisTests.DummySystemHP
 
     it "should use the System constructor and have typeFlags equal to 1 since we added 1 component", ->
       system.typeFlags.should.be.equal 1
@@ -20,17 +20,17 @@ describe "EntityProcessingSystems", ->
     component2 = null
 
     before () ->
-      world = new Bragi.EntityWorld()
+      world = new Artemis.EntityWorld()
 
-      entity1 = new Bragi.Entity world, 0
-      entity2 = new Bragi.Entity world, 0
+      entity1 = new Artemis.Entity world, 0
+      entity2 = new Artemis.Entity world, 0
 
-      component = new BragiTests.DummyComponentHP 100
+      component = new ArtemisTests.DummyComponentHP 100
 
       entity1.addComponent component
       entity2.addComponent component
 
-      system = new BragiTests.DummySystemHP
+      system = new ArtemisTests.DummySystemHP
 
       #Not needed in real use, should be done via other methods
       system.world = world

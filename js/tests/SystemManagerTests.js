@@ -5,16 +5,16 @@
     var world;
     world = null;
     before(function() {
-      return world = new Bragi.EntityWorld();
+      return world = new Artemis.EntityWorld();
     });
     describe("Instantiation", function() {
       var systemManager;
       systemManager = null;
       before(function() {
-        return systemManager = new Bragi.SystemManager(world);
+        return systemManager = new Artemis.SystemManager(world);
       });
       it("should have the world instance as property", function() {
-        return systemManager.world.should.be.an["instanceof"](Bragi.EntityWorld);
+        return systemManager.world.should.be.an["instanceof"](Artemis.EntityWorld);
       });
       it("should have an empty object called systems", function() {
         systemManager.systems.should.be.an["instanceof"](Object);
@@ -29,7 +29,7 @@
       var system;
       system = null;
       before(function() {
-        system = new Bragi.System("DummyComponentHP", "DummyComponentPosition");
+        system = new Artemis.System("DummyComponentHP", "DummyComponentPosition");
         return world.systemManager.addSystem(system);
       });
       it("should have added a entry in the systems object and so it should have a length of 1", function() {
@@ -44,7 +44,7 @@
       system = null;
       systemFound = null;
       before(function() {
-        system = new Bragi.System("DummyComponentHP", "DummyComponentPosition");
+        system = new Artemis.System("DummyComponentHP", "DummyComponentPosition");
         world.systemManager.addSystem(system);
         return systemFound = world.systemManager.getSystem("System");
       });
@@ -57,13 +57,13 @@
       systemFound = null;
       before(function() {
         var system;
-        system = new BragiTests.DummySystemHP;
+        system = new ArtemisTests.DummySystemHP;
         world.systemManager.addSystem(system);
         world.systemManager.initializeAll();
         return systemFound = world.systemManager.getSystem("DummySystemHP");
       });
       return it("should have a dummyComponentHPMapper parameter", function() {
-        systemFound.dummyComponentHPMapper.should.be.an["instanceof"](Bragi.ComponentMapper);
+        systemFound.dummyComponentHPMapper.should.be.an["instanceof"](Artemis.ComponentMapper);
         return systemFound.dummyComponentHPMapper.componentName.should.be.equal("DummyComponentHP");
       });
     });

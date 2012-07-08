@@ -2,7 +2,7 @@
 (function() {
   var ComponentMapper;
 
-  Bragi.ComponentMapper = {};
+  Artemis.ComponentMapper = {};
 
   ComponentMapper = (function() {
 
@@ -20,6 +20,6 @@
 
   })();
 
-  Bragi.ComponentMapper = ComponentMapper;
+  Artemis.ComponentMapper = ComponentMapper;
 
 }).call(this);

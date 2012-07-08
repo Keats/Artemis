@@ -8,14 +8,14 @@ describe "Game simulation", ->
     movementSystem = null
 
     before () ->
-      world = new Bragi.EntityWorld()
+      world = new Artemis.EntityWorld()
 
-      movementSystem = world.systemManager.addSystem(new BragiTests.DummySystemMovement)
+      movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement)
 
       entity = world.createEntity()
 
-      entity.addComponent new BragiTests.DummyComponentPosition 1,1,1
-      entity.addComponent new BragiTests.DummyComponentVelocity 2, 25
+      entity.addComponent new ArtemisTests.DummyComponentPosition 1,1,1
+      entity.addComponent new ArtemisTests.DummyComponentVelocity 2, 25
 
       world.systemManager.initializeAll()
 
@@ -24,7 +24,7 @@ describe "Game simulation", ->
       movementSystem.process()
 
     it "should have added the system", ->
-      world.systemManager.allSystems[0].should.be.an.instanceof BragiTests.DummySystemMovement
+      world.systemManager.allSystems[0].should.be.an.instanceof ArtemisTests.DummySystemMovement
       world.systemManager.systems.hasOwnProperty("DummySystemMovement").should.be.true
     it "should not have registered the entity as active", ->
       Object.keys(movementSystem.actives).should.have.length 0
@@ -38,14 +38,14 @@ describe "Game simulation", ->
     component = null
 
     before () ->
-      world = new Bragi.EntityWorld()
+      world = new Artemis.EntityWorld()
 
-      movementSystem = world.systemManager.addSystem(new BragiTests.DummySystemMovement)
+      movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement)
 
       entity = world.createEntity()
 
-      entity.addComponent new BragiTests.DummyComponentPosition 1,1,1
-      entity.addComponent new BragiTests.DummyComponentVelocity 2, 25
+      entity.addComponent new ArtemisTests.DummyComponentPosition 1,1,1
+      entity.addComponent new ArtemisTests.DummyComponentVelocity 2, 25
       entity.refresh()
 
       world.systemManager.initializeAll()
@@ -57,7 +57,7 @@ describe "Game simulation", ->
       component = entity.getComponent "DummyComponentPosition"
 
     it "should have added the system", ->
-      world.systemManager.allSystems[0].should.be.an.instanceof BragiTests.DummySystemMovement
+      world.systemManager.allSystems[0].should.be.an.instanceof ArtemisTests.DummySystemMovement
       world.systemManager.systems.hasOwnProperty("DummySystemMovement").should.be.true
     it "should have registered the entity as active", ->
       Object.keys(movementSystem.actives).should.have.length 1

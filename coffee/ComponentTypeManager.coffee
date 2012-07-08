@@ -1,5 +1,5 @@
 
-Bragi.ComponentTypeManager = {}
+Artemis.ComponentTypeManager = {}
 
 
 #Class storing references to the different components so we can use them in systems
@@ -11,7 +11,7 @@ class ComponentTypeManager
   #Gets or create a ComponentType based on the class name and adds it the _componentTypes
   @getType: (component) ->
 
-    unless component instanceof Bragi.Component
+    unless component instanceof Artemis.Component
       throw new Error "Tried to add a component that is not inheriting from Component"
 
     #TODO change that when coffeescript gives a name property to classes
@@ -22,7 +22,7 @@ class ComponentTypeManager
 
     #If not we create a new component type and add it to the object _componentTypes
     if not type
-      type = new Bragi.ComponentType()
+      type = new Artemis.ComponentType()
       _componentTypes[className] = type
         
     type
@@ -33,7 +33,7 @@ class ComponentTypeManager
     type = _componentTypes[className]
 
     if not type
-      type = new Bragi.ComponentType()
+      type = new Artemis.ComponentType()
       _componentTypes[className] = type
 
     type
@@ -48,4 +48,4 @@ class ComponentTypeManager
     @getType(component).bit
 
 
-Bragi.ComponentTypeManager = ComponentTypeManager
+Artemis.ComponentTypeManager = ComponentTypeManager

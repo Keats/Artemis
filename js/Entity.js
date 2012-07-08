@@ -2,7 +2,7 @@
 (function() {
   var Entity;
 
-  Bragi.Entity = {};
+  Artemis.Entity = {};
 
   Entity = (function() {
 
@@ -18,7 +18,7 @@
     };
 
     Entity.prototype.addComponent = function(component) {
-      if (!(component instanceof Bragi.Component)) {
+      if (!(component instanceof Artemis.Component)) {
         throw new Error("Tried to add a component that is not inheriting from Component");
       }
       this.world.entityManager._addComponent(this, component);
@@ -72,6 +72,6 @@
 
   })();
 
-  Bragi.Entity = Entity;
+  Artemis.Entity = Entity;
 
 }).call(this);

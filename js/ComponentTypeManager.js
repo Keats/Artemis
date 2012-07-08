@@ -2,7 +2,7 @@
 (function() {
   var ComponentTypeManager;
 
-  Bragi.ComponentTypeManager = {};
+  Artemis.ComponentTypeManager = {};
 
   ComponentTypeManager = (function() {
     var _componentTypes;
@@ -13,13 +13,13 @@
 
     ComponentTypeManager.getType = function(component) {
       var className, type;
-      if (!(component instanceof Bragi.Component)) {
+      if (!(component instanceof Artemis.Component)) {
         throw new Error("Tried to add a component that is not inheriting from Component");
       }
       className = component.constructor.name;
       type = _componentTypes[className];
       if (!type) {
-        type = new Bragi.ComponentType();
+        type = new Artemis.ComponentType();
         _componentTypes[className] = type;
       }
       return type;
@@ -29,7 +29,7 @@
       var type;
       type = _componentTypes[className];
       if (!type) {
-        type = new Bragi.ComponentType();
+        type = new Artemis.ComponentType();
         _componentTypes[className] = type;
       }
       return type;
@@ -47,6 +47,6 @@
 
   })();
 
-  Bragi.ComponentTypeManager = ComponentTypeManager;
+  Artemis.ComponentTypeManager = ComponentTypeManager;
 
 }).call(this);

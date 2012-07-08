@@ -5,16 +5,16 @@
     var world;
     world = null;
     before(function() {
-      return world = new Bragi.EntityWorld();
+      return world = new Artemis.EntityWorld();
     });
     describe("Instantiation", function() {
       var entityManager;
       entityManager = null;
       before(function() {
-        return entityManager = new Bragi.EntityManager(world);
+        return entityManager = new Artemis.EntityManager(world);
       });
       it("should have the world instance as property", function() {
-        return entityManager.world.should.be.an["instanceof"](Bragi.EntityWorld);
+        return entityManager.world.should.be.an["instanceof"](Artemis.EntityWorld);
       });
       it("should have nextId equal to 0", function() {
         return entityManager.nextId.should.be.equal(0);
@@ -34,13 +34,13 @@
       entity = null;
       entity2 = null;
       before(function() {
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
         return entity2 = entityManager._create();
       });
       it("should have created 2 entities", function() {
-        entity.should.be.an["instanceof"](Bragi.Entity);
-        return entity2.should.be.an["instanceof"](Bragi.Entity);
+        entity.should.be.an["instanceof"](Artemis.Entity);
+        return entity2.should.be.an["instanceof"](Artemis.Entity);
       });
       it("entities should have differents ids", function() {
         return entity.id.should.be.not.equal(entity2.id);
@@ -58,7 +58,7 @@
       entity = null;
       entity2 = null;
       before(function() {
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
         return entity2 = entityManager._getEntity(entity.id);
       });
@@ -71,7 +71,7 @@
       entityManager = null;
       entity = null;
       before(function() {
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
         return entityManager.remove(entity);
       });
@@ -89,12 +89,12 @@
       components[1] = [];
       before(function() {
         var entity2, key, obj, prop, _results;
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
-        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentPosition(1, 1, 1));
         entity2 = entityManager._create();
-        entityManager._addComponent(entity2, new BragiTests.DummyComponentHP(100));
+        entityManager._addComponent(entity2, new ArtemisTests.DummyComponentHP(100));
         _results = [];
         for (key in entityManager.componentsByType) {
           obj = entityManager.componentsByType[key];
@@ -115,10 +115,10 @@
       return it("should have the object componentsByType referencing all entities/components associations", function() {
         Object.keys(entityManager.componentsByType).should.have.length(2);
         components[0].should.have.length(2);
-        components[0][0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
-        components[0][1].should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        components[0][0].should.be.an["instanceof"](ArtemisTests.DummyComponentHP);
+        components[0][1].should.be.an["instanceof"](ArtemisTests.DummyComponentHP);
         components[1].should.have.length(1);
-        return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
+        return components[1][0].should.be.an["instanceof"](ArtemisTests.DummyComponentPosition);
       });
     });
     describe("Removing components from entities", function() {
@@ -131,12 +131,12 @@
       components[1] = [];
       before(function() {
         var entity2, key, obj, prop, _results;
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
-        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentPosition(1, 1, 1));
         entity2 = entityManager._create();
-        entityManager._addComponent(entity2, new BragiTests.DummyComponentHP(100));
+        entityManager._addComponent(entity2, new ArtemisTests.DummyComponentHP(100));
         entityManager._removeComponent(entity, "DummyComponentHP");
         _results = [];
         for (key in entityManager.componentsByType) {
@@ -158,9 +158,9 @@
       return it("should have the object componentsByType referencing all entities/components associations", function() {
         Object.keys(entityManager.componentsByType).should.have.length(2);
         components[0].should.have.length(1);
-        components[0][0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        components[0][0].should.be.an["instanceof"](ArtemisTests.DummyComponentHP);
         components[1].should.have.length(1);
-        return components[1][0].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
+        return components[1][0].should.be.an["instanceof"](ArtemisTests.DummyComponentPosition);
       });
     });
     describe("Removing all components from an entity", function() {
@@ -168,10 +168,10 @@
       entityManager = null;
       entity = null;
       before(function() {
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
-        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentPosition(1, 1, 1));
         return entityManager._removeAllComponents(entity);
       });
       return it("entity should have not components for this entity in componentsByType", function() {
@@ -184,14 +184,14 @@
       entity = null;
       component = null;
       before(function() {
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
-        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentPosition(1, 1, 1));
         return component = entityManager._getComponent(entity, "DummyComponentHP");
       });
       return it("should have retrieved the DummyComponentHP component", function() {
-        return component.should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        return component.should.be.an["instanceof"](ArtemisTests.DummyComponentHP);
       });
     });
     return describe("Getting all components of an entity", function() {
@@ -200,10 +200,10 @@
       entity = null;
       components = null;
       before(function() {
-        entityManager = new Bragi.EntityManager(world);
+        entityManager = new Artemis.EntityManager(world);
         entity = entityManager._create();
-        entityManager._addComponent(entity, new BragiTests.DummyComponentHP(100));
-        entityManager._addComponent(entity, new BragiTests.DummyComponentPosition(1, 1, 1));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentHP(100));
+        entityManager._addComponent(entity, new ArtemisTests.DummyComponentPosition(1, 1, 1));
         return components = entityManager._getAllComponents(entity);
       });
       it("should be an array with a length of 2", function() {
@@ -211,10 +211,10 @@
         return components.should.have.length(2);
       });
       it("should have the DummyComponentHP as [0]", function() {
-        return components[0].should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        return components[0].should.be.an["instanceof"](ArtemisTests.DummyComponentHP);
       });
       return it("should have the DummyComponentPosition as [1]", function() {
-        return components[1].should.be.an["instanceof"](BragiTests.DummyComponentPosition);
+        return components[1].should.be.an["instanceof"](ArtemisTests.DummyComponentPosition);
       });
     });
   });

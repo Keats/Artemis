@@ -13,25 +13,25 @@ describe "Component Type Manager", ->
     id = null
 
     before () ->
-      componentHP = new BragiTests.DummyComponentHP 100
-      componentHP2 = new BragiTests.DummyComponentHP 1000
-      componentPosition = new BragiTests.DummyComponentPosition 1, 2, 3
+      componentHP = new ArtemisTests.DummyComponentHP 100
+      componentHP2 = new ArtemisTests.DummyComponentHP 1000
+      componentPosition = new ArtemisTests.DummyComponentPosition 1, 2, 3
       notInheriting = new Object()
 
       #Need to use a function to get the throw error
       typeNotInheriting = (notInheriting) ->
-        Bragi.ComponentTypeManager.getType notInheriting
+        Artemis.ComponentTypeManager.getType notInheriting
 
-      typeComponentHP = Bragi.ComponentTypeManager.getType componentHP
-      typeComponentHP2 = Bragi.ComponentTypeManager.getType componentHP2
-      typeComponentPosition = Bragi.ComponentTypeManager.getType componentPosition
-      typeComponentPositionByString = Bragi.ComponentTypeManager.getTypeByName "DummyComponentPosition"
+      typeComponentHP = Artemis.ComponentTypeManager.getType componentHP
+      typeComponentHP2 = Artemis.ComponentTypeManager.getType componentHP2
+      typeComponentPosition = Artemis.ComponentTypeManager.getType componentPosition
+      typeComponentPositionByString = Artemis.ComponentTypeManager.getTypeByName "DummyComponentPosition"
 
-      bit = Bragi.ComponentTypeManager.getBit componentHP
-      id = Bragi.ComponentTypeManager.getId componentHP
+      bit = Artemis.ComponentTypeManager.getBit componentHP
+      id = Artemis.ComponentTypeManager.getId componentHP
 
 
-    it "should throw an error if calling getType with an object not inheriting from Bragi.Component", ->
+    it "should throw an error if calling getType with an object not inheriting from Artemis.Component", ->
       typeNotInheriting.should.Throw Error
     it "should get the same type for typeComponentHP and typeComponentHP2", ->
       typeComponentHP.should.be.equal typeComponentHP2

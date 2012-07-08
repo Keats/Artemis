@@ -7,8 +7,8 @@ describe "Group Manager", ->
     entity = null
 
     before () ->
-      world = new Bragi.EntityWorld()
-      entity = new Bragi.Entity world, 0
+      world = new Artemis.EntityWorld()
+      entity = new Artemis.Entity world, 0
       world.groupManager.set "testing", entity
 
     it "should have created the testing group", ->
@@ -25,8 +25,8 @@ describe "Group Manager", ->
     entity = null
 
     before () ->
-      world = new Bragi.EntityWorld()
-      entity = new Bragi.Entity world, 0
+      world = new Artemis.EntityWorld()
+      entity = new Artemis.Entity world, 0
       world.groupManager.set "testing", entity
       world.groupManager.set "testing2", entity
 
@@ -47,9 +47,9 @@ describe "Group Manager", ->
     entitiesFound = null
 
     before () ->
-      world = new Bragi.EntityWorld()
-      entity = new Bragi.Entity world, 0
-      entity2 = new Bragi.Entity world, 1
+      world = new Artemis.EntityWorld()
+      entity = new Artemis.Entity world, 0
+      entity2 = new Artemis.Entity world, 1
 
       world.groupManager.set "testing", entity
       world.groupManager.set "testing", entity2
@@ -69,9 +69,9 @@ describe "Group Manager", ->
     entity2 = null
 
     before () ->
-      world = new Bragi.EntityWorld()
-      entity = new Bragi.Entity world, 0
-      entity2 = new Bragi.Entity world, 1
+      world = new Artemis.EntityWorld()
+      entity = new Artemis.Entity world, 0
+      entity2 = new Artemis.Entity world, 1
 
       world.groupManager.set "testing", entity
       world.groupManager.set "testing", entity2

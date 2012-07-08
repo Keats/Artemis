@@ -2,7 +2,7 @@
 (function() {
   var EntityManager;
 
-  Bragi.EntityManager = {};
+  Artemis.EntityManager = {};
 
   EntityManager = (function() {
 
@@ -17,7 +17,7 @@
 
     EntityManager.prototype._create = function() {
       var entity;
-      entity = new Bragi.Entity(this.world, this.nextId);
+      entity = new Artemis.Entity(this.world, this.nextId);
       this.nextId++;
       this.entities[entity.id] = entity;
       this.count++;
@@ -57,7 +57,7 @@
 
     EntityManager.prototype._addComponent = function(entity, component) {
       var componentType, components;
-      componentType = Bragi.ComponentTypeManager.getType(component);
+      componentType = Artemis.ComponentTypeManager.getType(component);
       components = this.componentsByType[componentType.id];
       if (!components) {
         components = {};
@@ -69,7 +69,7 @@
 
     EntityManager.prototype._removeComponent = function(entity, componentName) {
       var componentType, components;
-      componentType = Bragi.ComponentTypeManager.getTypeByName(componentName);
+      componentType = Artemis.ComponentTypeManager.getTypeByName(componentName);
       components = this.componentsByType[componentType.id];
       delete components[entity.id];
       return entity._removeTypeBit(componentType.bit);
@@ -77,7 +77,7 @@
 
     EntityManager.prototype._getComponent = function(entity, componentName) {
       var componentType, components;
-      componentType = Bragi.ComponentTypeManager.getTypeByName(componentName);
+      componentType = Artemis.ComponentTypeManager.getTypeByName(componentName);
       components = this.componentsByType[componentType.id];
       if (components) {
         return components[entity.id];
@@ -126,6 +126,6 @@
 
   })();
 
-  Bragi.EntityManager = EntityManager;
+  Artemis.EntityManager = EntityManager;
 
 }).call(this);

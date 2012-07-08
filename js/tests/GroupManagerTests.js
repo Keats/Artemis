@@ -7,8 +7,8 @@
       world = null;
       entity = null;
       before(function() {
-        world = new Bragi.EntityWorld();
-        entity = new Bragi.Entity(world, 0);
+        world = new Artemis.EntityWorld();
+        entity = new Artemis.Entity(world, 0);
         return world.groupManager.set("testing", entity);
       });
       it("should have created the testing group", function() {
@@ -26,8 +26,8 @@
       world = null;
       entity = null;
       before(function() {
-        world = new Bragi.EntityWorld();
-        entity = new Bragi.Entity(world, 0);
+        world = new Artemis.EntityWorld();
+        entity = new Artemis.Entity(world, 0);
         world.groupManager.set("testing", entity);
         return world.groupManager.set("testing2", entity);
       });
@@ -49,9 +49,9 @@
       entity2 = null;
       entitiesFound = null;
       before(function() {
-        world = new Bragi.EntityWorld();
-        entity = new Bragi.Entity(world, 0);
-        entity2 = new Bragi.Entity(world, 1);
+        world = new Artemis.EntityWorld();
+        entity = new Artemis.Entity(world, 0);
+        entity2 = new Artemis.Entity(world, 1);
         world.groupManager.set("testing", entity);
         world.groupManager.set("testing", entity2);
         return entitiesFound = world.groupManager.get("testing");
@@ -70,9 +70,9 @@
       entity = null;
       entity2 = null;
       before(function() {
-        world = new Bragi.EntityWorld();
-        entity = new Bragi.Entity(world, 0);
-        entity2 = new Bragi.Entity(world, 1);
+        world = new Artemis.EntityWorld();
+        entity = new Artemis.Entity(world, 0);
+        entity2 = new Artemis.Entity(world, 1);
         world.groupManager.set("testing", entity);
         world.groupManager.set("testing", entity2);
         return world.groupManager.remove(entity2);

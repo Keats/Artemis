@@ -1,5 +1,5 @@
 
-Bragi.Entity = {}
+Artemis.Entity = {}
 
 
 class Entity
@@ -21,7 +21,7 @@ class Entity
 
   #Call that function directly to add any component to an entity
   addComponent: (component) ->
-    unless component instanceof Bragi.Component
+    unless component instanceof Artemis.Component
       throw new Error "Tried to add a component that is not inheriting from Component"
 
     @world.entityManager._addComponent @, component
@@ -85,4 +85,4 @@ class Entity
 
 
 
-Bragi.Entity = Entity
+Artemis.Entity = Entity

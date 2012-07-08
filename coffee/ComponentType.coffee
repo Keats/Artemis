@@ -1,5 +1,5 @@
 
-Bragi.ComponentType = {}
+Artemis.ComponentType = {}
 
 
 #Class giving ids to a component
@@ -18,4 +18,4 @@ class ComponentType
     _nextBit = _nextBit << 1
 
 
-Bragi.ComponentType = ComponentType
+Artemis.ComponentType = ComponentType

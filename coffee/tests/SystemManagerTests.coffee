@@ -4,17 +4,17 @@ describe "System Manager", ->
   world = null
 
   before () ->
-    world = new Bragi.EntityWorld()
+    world = new Artemis.EntityWorld()
 
   describe "Instantiation", ->
 
     systemManager = null
 
     before () ->
-      systemManager = new Bragi.SystemManager world
+      systemManager = new Artemis.SystemManager world
 
     it "should have the world instance as property", ->
-      systemManager.world.should.be.an.instanceof Bragi.EntityWorld
+      systemManager.world.should.be.an.instanceof Artemis.EntityWorld
     it "should have an empty object called systems", ->
       systemManager.systems.should.be.an.instanceof Object
       systemManager.systems.should.be.empty
@@ -27,7 +27,7 @@ describe "System Manager", ->
     system = null
 
     before () ->
-      system = new Bragi.System "DummyComponentHP", "DummyComponentPosition"
+      system = new Artemis.System "DummyComponentHP", "DummyComponentPosition"
       world.systemManager.addSystem system
 
     it "should have added a entry in the systems object and so it should have a length of 1", ->
@@ -42,7 +42,7 @@ describe "System Manager", ->
     systemFound = null
 
     before () ->
-      system = new Bragi.System "DummyComponentHP", "DummyComponentPosition"
+      system = new Artemis.System "DummyComponentHP", "DummyComponentPosition"
       world.systemManager.addSystem system
       systemFound = world.systemManager.getSystem "System"
 
@@ -55,7 +55,7 @@ describe "System Manager", ->
     systemFound = null
 
     before () ->
-      system = new BragiTests.DummySystemHP
+      system = new ArtemisTests.DummySystemHP
       world.systemManager.addSystem system
 
       world.systemManager.initializeAll()
@@ -64,5 +64,5 @@ describe "System Manager", ->
 
 
     it "should have a dummyComponentHPMapper parameter", ->
-      systemFound.dummyComponentHPMapper.should.be.an.instanceof Bragi.ComponentMapper
+      systemFound.dummyComponentHPMapper.should.be.an.instanceof Artemis.ComponentMapper
       systemFound.dummyComponentHPMapper.componentName.should.be.equal "DummyComponentHP"

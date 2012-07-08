@@ -13,21 +13,21 @@
       id = null;
       before(function() {
         var componentHP, componentHP2, componentPosition, notInheriting;
-        componentHP = new BragiTests.DummyComponentHP(100);
-        componentHP2 = new BragiTests.DummyComponentHP(1000);
-        componentPosition = new BragiTests.DummyComponentPosition(1, 2, 3);
+        componentHP = new ArtemisTests.DummyComponentHP(100);
+        componentHP2 = new ArtemisTests.DummyComponentHP(1000);
+        componentPosition = new ArtemisTests.DummyComponentPosition(1, 2, 3);
         notInheriting = new Object();
         typeNotInheriting = function(notInheriting) {
-          return Bragi.ComponentTypeManager.getType(notInheriting);
+          return Artemis.ComponentTypeManager.getType(notInheriting);
         };
-        typeComponentHP = Bragi.ComponentTypeManager.getType(componentHP);
-        typeComponentHP2 = Bragi.ComponentTypeManager.getType(componentHP2);
-        typeComponentPosition = Bragi.ComponentTypeManager.getType(componentPosition);
-        typeComponentPositionByString = Bragi.ComponentTypeManager.getTypeByName("DummyComponentPosition");
-        bit = Bragi.ComponentTypeManager.getBit(componentHP);
-        return id = Bragi.ComponentTypeManager.getId(componentHP);
+        typeComponentHP = Artemis.ComponentTypeManager.getType(componentHP);
+        typeComponentHP2 = Artemis.ComponentTypeManager.getType(componentHP2);
+        typeComponentPosition = Artemis.ComponentTypeManager.getType(componentPosition);
+        typeComponentPositionByString = Artemis.ComponentTypeManager.getTypeByName("DummyComponentPosition");
+        bit = Artemis.ComponentTypeManager.getBit(componentHP);
+        return id = Artemis.ComponentTypeManager.getId(componentHP);
       });
-      it("should throw an error if calling getType with an object not inheriting from Bragi.Component", function() {
+      it("should throw an error if calling getType with an object not inheriting from Artemis.Component", function() {
         return typeNotInheriting.should.Throw(Error);
       });
       it("should get the same type for typeComponentHP and typeComponentHP2", function() {

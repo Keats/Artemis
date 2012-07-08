@@ -1,5 +1,5 @@
 
-Bragi.System = {}
+Artemis.System = {}
 
 
 class System
@@ -17,7 +17,7 @@ class System
 
     for component in components
       #TODO: change that when coffeescript gives name of class
-      type = Bragi.ComponentTypeManager.getTypeByName component
+      type = Artemis.ComponentTypeManager.getTypeByName component
       @typeFlags |= type.bit
 
 
@@ -80,4 +80,4 @@ class System
     #called when removing an entity
 
 
-Bragi.System = System
+Artemis.System = System

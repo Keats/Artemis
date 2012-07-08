@@ -1,5 +1,5 @@
 
-Bragi.ComponentMapper = {}
+Artemis.ComponentMapper = {}
 
 
 #Class containing a mapping between all components and entities
@@ -18,4 +18,4 @@ class ComponentMapper
 
 
 
-Bragi.ComponentMapper = ComponentMapper
+Artemis.ComponentMapper = ComponentMapper

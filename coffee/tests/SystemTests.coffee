@@ -6,7 +6,7 @@ describe "Systems", ->
     system = null
 
     before () ->
-      system = new Bragi.System "DummyComponentHP", "DummyComponentPosition"
+      system = new Artemis.System "DummyComponentHP", "DummyComponentPosition"
 
     it "should have typeFlags equal to 3 since we added 2 components", ->
       system.typeFlags.should.be.equal 3
@@ -18,13 +18,13 @@ describe "Systems", ->
     component = null
 
     before () ->
-      world = new Bragi.EntityWorld()
-      entity = new Bragi.Entity world, 0
+      world = new Artemis.EntityWorld()
+      entity = new Artemis.Entity world, 0
 
-      component = new BragiTests.DummyComponentHP 100
+      component = new ArtemisTests.DummyComponentHP 100
       entity.addComponent component
 
-      system = new BragiTests.DummySystemHP
+      system = new ArtemisTests.DummySystemHP
 
       #Not needed in real use, should be done via other methods
       system.world = world

@@ -6,19 +6,19 @@
     world = null;
     describe("Instantiation", function() {
       before(function() {
-        return world = new Bragi.EntityWorld();
+        return world = new Artemis.EntityWorld();
       });
       it("should have an Entity Manager", function() {
-        return world.entityManager.should.be.an["instanceof"](Bragi.EntityManager);
+        return world.entityManager.should.be.an["instanceof"](Artemis.EntityManager);
       });
       it("should have a System Manager", function() {
-        return world.systemManager.should.be.an["instanceof"](Bragi.SystemManager);
+        return world.systemManager.should.be.an["instanceof"](Artemis.SystemManager);
       });
       it("should have a Tag Manager", function() {
-        return world.tagManager.should.be.an["instanceof"](Bragi.TagManager);
+        return world.tagManager.should.be.an["instanceof"](Artemis.TagManager);
       });
       it("should have a Group Manager", function() {
-        return world.groupManager.should.be.an["instanceof"](Bragi.GroupManager);
+        return world.groupManager.should.be.an["instanceof"](Artemis.GroupManager);
       });
       return it("should have an empty array called deleted", function() {
         world.deleted.should.be.an["instanceof"](Array);
@@ -29,11 +29,11 @@
       var entity;
       entity = null;
       before(function() {
-        world = new Bragi.EntityWorld();
+        world = new Artemis.EntityWorld();
         return entity = world.createEntity();
       });
       it("should have created an entity", function() {
-        return entity.should.be.an["instanceof"](Bragi.Entity);
+        return entity.should.be.an["instanceof"](Artemis.Entity);
       });
       return it("entity should have the world instance as property", function() {
         return entity.world.should.be.equal(world);
@@ -44,12 +44,12 @@
       entity = null;
       dummy = null;
       before(function() {
-        world = new Bragi.EntityWorld();
+        world = new Artemis.EntityWorld();
         dummy = world.createEntity();
         return entity = world.getEntity(dummy.id);
       });
       it("should have an entity", function() {
-        return entity.should.be.an["instanceof"](Bragi.Entity);
+        return entity.should.be.an["instanceof"](Artemis.Entity);
       });
       return it("entity should be equal to dummy", function() {
         return entity.should.be.equal(dummy);
@@ -59,7 +59,7 @@
       var entity;
       entity = null;
       before(function() {
-        world = new Bragi.EntityWorld();
+        world = new Artemis.EntityWorld();
         entity = world.createEntity();
         return world.deleteEntity(entity);
       });

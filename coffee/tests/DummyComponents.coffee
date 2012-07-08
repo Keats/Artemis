@@ -1,35 +1,35 @@
 
-window.BragiTests = {}
+window.ArtemisTests = {}
 
-window.BragiTests.DummyComponentHP = {}
-window.BragiTests.DummyComponentPosition = {}
-window.BragiTests.DummyComponentVelocity = {}
-window.BragiTests.DummyComponentName = {}
+window.ArtemisTests.DummyComponentHP = {}
+window.ArtemisTests.DummyComponentPosition = {}
+window.ArtemisTests.DummyComponentVelocity = {}
+window.ArtemisTests.DummyComponentName = {}
 
-class DummyComponentHP extends Bragi.Component
+class DummyComponentHP extends Artemis.Component
 
   constructor: (@hp) ->
 
 
 
-class DummyComponentPosition extends Bragi.Component
+class DummyComponentPosition extends Artemis.Component
 
   constructor: (@x, @y, @z) ->
 
 
 
-class DummyComponentVelocity extends Bragi.Component
+class DummyComponentVelocity extends Artemis.Component
 
   constructor: (@velocity, @angle) ->
 
 
 
-class DummyComponentName extends Bragi.Component
+class DummyComponentName extends Artemis.Component
 
   constructor: (@name) ->
 
 
-window.BragiTests.DummyComponentHP = DummyComponentHP
-window.BragiTests.DummyComponentPosition = DummyComponentPosition
-window.BragiTests.DummyComponentVelocity = DummyComponentVelocity
-window.BragiTests.DummyComponentName = DummyComponentName
+window.ArtemisTests.DummyComponentHP = DummyComponentHP
+window.ArtemisTests.DummyComponentPosition = DummyComponentPosition
+window.ArtemisTests.DummyComponentVelocity = DummyComponentVelocity
+window.ArtemisTests.DummyComponentName = DummyComponentName

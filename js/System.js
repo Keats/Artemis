@@ -3,7 +3,7 @@
   var System,
     __slice = [].slice;
 
-  Bragi.System = {};
+  Artemis.System = {};
 
   System = (function() {
 
@@ -17,7 +17,7 @@
       this.typeFlags = 0;
       for (_i = 0, _len = components.length; _i < _len; _i++) {
         component = components[_i];
-        type = Bragi.ComponentTypeManager.getTypeByName(component);
+        type = Artemis.ComponentTypeManager.getTypeByName(component);
         this.typeFlags |= type.bit;
       }
     }
@@ -65,6 +65,6 @@
 
   })();
 
-  Bragi.System = System;
+  Artemis.System = System;
 
 }).call(this);

@@ -1,8 +1,8 @@
 
-Bragi.EntityProcessingSystem = {}
+Artemis.EntityProcessingSystem = {}
 
 
-class EntityProcessingSystem extends Bragi.System
+class EntityProcessingSystem extends Artemis.System
 
   construct: () ->
     super
@@ -17,4 +17,4 @@ class EntityProcessingSystem extends Bragi.System
 
 
 
-Bragi.EntityProcessingSystem = EntityProcessingSystem
+Artemis.EntityProcessingSystem = EntityProcessingSystem

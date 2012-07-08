@@ -3,15 +3,15 @@
   var EntityWorld,
     __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
-  Bragi.EntityWorld = {};
+  Artemis.EntityWorld = {};
 
   EntityWorld = (function() {
 
     function EntityWorld() {
-      this.entityManager = new Bragi.EntityManager(this);
-      this.systemManager = new Bragi.SystemManager(this);
-      this.tagManager = new Bragi.TagManager(this);
-      this.groupManager = new Bragi.GroupManager(this);
+      this.entityManager = new Artemis.EntityManager(this);
+      this.systemManager = new Artemis.SystemManager(this);
+      this.tagManager = new Artemis.TagManager(this);
+      this.groupManager = new Artemis.GroupManager(this);
       this.deleted = [];
       this.refreshed = [];
       this.delta = 0;
@@ -55,6 +55,6 @@
 
   })();
 
-  Bragi.EntityWorld = EntityWorld;
+  Artemis.EntityWorld = EntityWorld;
 
 }).call(this);

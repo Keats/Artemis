@@ -1,5 +1,5 @@
 
-Bragi.EntityWorld = {}
+Artemis.EntityWorld = {}
 
 
 #Main class that instantiates the managers
@@ -8,10 +8,10 @@ class EntityWorld
 
 
   constructor: () ->
-    @entityManager = new Bragi.EntityManager @
-    @systemManager = new Bragi.SystemManager @
-    @tagManager = new Bragi.TagManager @
-    @groupManager = new Bragi.GroupManager @
+    @entityManager = new Artemis.EntityManager @
+    @systemManager = new Artemis.SystemManager @
+    @tagManager = new Artemis.TagManager @
+    @groupManager = new Artemis.GroupManager @
 
     @deleted = []
     @refreshed = []
@@ -51,4 +51,4 @@ class EntityWorld
     @deleted = []
 
 
-Bragi.EntityWorld = EntityWorld
+Artemis.EntityWorld = EntityWorld

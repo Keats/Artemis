@@ -1,8 +1,8 @@
 
-window.BragiTests.DummySystemHP = {}
-window.BragiTests.DummySystemMovement = {}
+window.ArtemisTests.DummySystemHP = {}
+window.ArtemisTests.DummySystemMovement = {}
 
-class DummySystemHP extends Bragi.EntityProcessingSystem
+class DummySystemHP extends Artemis.EntityProcessingSystem
 
   constructor: () ->
     super "DummyComponentHP"
@@ -10,7 +10,7 @@ class DummySystemHP extends Bragi.EntityProcessingSystem
 
   initialize: () ->
     #world is added to the system when calling addSystem from system manager
-    @dummyComponentHPMapper = new Bragi.ComponentMapper "DummyComponentHP", @world
+    @dummyComponentHPMapper = new Artemis.ComponentMapper "DummyComponentHP", @world
 
 
   processEntity: (entity) ->
@@ -18,7 +18,7 @@ class DummySystemHP extends Bragi.EntityProcessingSystem
     dummyComponentHP.hp = 0
 
 
-class DummySystemMovement extends Bragi.EntityProcessingSystem
+class DummySystemMovement extends Artemis.EntityProcessingSystem
 
   constructor: () ->
     super "DummyComponentPosition", "DummyComponentVelocity"
@@ -26,8 +26,8 @@ class DummySystemMovement extends Bragi.EntityProcessingSystem
 
   initialize: () ->
     #world is added to the system when calling addSystem from system manager
-    @dummyComponentPositionMapper = new Bragi.ComponentMapper "DummyComponentPosition", @world
-    @dummyComponentVelocityMapper = new Bragi.ComponentMapper "DummyComponentVelocity", @world
+    @dummyComponentPositionMapper = new Artemis.ComponentMapper "DummyComponentPosition", @world
+    @dummyComponentVelocityMapper = new Artemis.ComponentMapper "DummyComponentVelocity", @world
 
 
   processEntity: (entity) ->
@@ -39,5 +39,5 @@ class DummySystemMovement extends Bragi.EntityProcessingSystem
 
 
 
-window.BragiTests.DummySystemHP = DummySystemHP
-window.BragiTests.DummySystemMovement = DummySystemMovement
+window.ArtemisTests.DummySystemHP = DummySystemHP
+window.ArtemisTests.DummySystemMovement = DummySystemMovement

@@ -1,5 +1,5 @@
 
-Bragi.Component = {}
+Artemis.Component = {}
 
 # This class is only used to be extended from
 class Component
@@ -7,4 +7,4 @@ class Component
 
 
 
-Bragi.Component = Component
+Artemis.Component = Component

@@ -4,9 +4,9 @@
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  window.BragiTests.DummySystemHP = {};
+  window.ArtemisTests.DummySystemHP = {};
 
-  window.BragiTests.DummySystemMovement = {};
+  window.ArtemisTests.DummySystemMovement = {};
 
   DummySystemHP = (function(_super) {
 
@@ -17,7 +17,7 @@
     }
 
     DummySystemHP.prototype.initialize = function() {
-      return this.dummyComponentHPMapper = new Bragi.ComponentMapper("DummyComponentHP", this.world);
+      return this.dummyComponentHPMapper = new Artemis.ComponentMapper("DummyComponentHP", this.world);
     };
 
     DummySystemHP.prototype.processEntity = function(entity) {
@@ -28,7 +28,7 @@
 
     return DummySystemHP;
 
-  })(Bragi.EntityProcessingSystem);
+  })(Artemis.EntityProcessingSystem);
 
   DummySystemMovement = (function(_super) {
 
@@ -39,8 +39,8 @@
     }
 
     DummySystemMovement.prototype.initialize = function() {
-      this.dummyComponentPositionMapper = new Bragi.ComponentMapper("DummyComponentPosition", this.world);
-      return this.dummyComponentVelocityMapper = new Bragi.ComponentMapper("DummyComponentVelocity", this.world);
+      this.dummyComponentPositionMapper = new Artemis.ComponentMapper("DummyComponentPosition", this.world);
+      return this.dummyComponentVelocityMapper = new Artemis.ComponentMapper("DummyComponentVelocity", this.world);
     };
 
     DummySystemMovement.prototype.processEntity = function(entity) {
@@ -52,10 +52,10 @@
 
     return DummySystemMovement;
 
-  })(Bragi.EntityProcessingSystem);
+  })(Artemis.EntityProcessingSystem);
 
-  window.BragiTests.DummySystemHP = DummySystemHP;
+  window.ArtemisTests.DummySystemHP = DummySystemHP;
 
-  window.BragiTests.DummySystemMovement = DummySystemMovement;
+  window.ArtemisTests.DummySystemMovement = DummySystemMovement;
 
 }).call(this);

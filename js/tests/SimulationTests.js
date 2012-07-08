@@ -8,17 +8,17 @@
       entity = null;
       movementSystem = null;
       before(function() {
-        world = new Bragi.EntityWorld();
-        movementSystem = world.systemManager.addSystem(new BragiTests.DummySystemMovement);
+        world = new Artemis.EntityWorld();
+        movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement);
         entity = world.createEntity();
-        entity.addComponent(new BragiTests.DummyComponentPosition(1, 1, 1));
-        entity.addComponent(new BragiTests.DummyComponentVelocity(2, 25));
+        entity.addComponent(new ArtemisTests.DummyComponentPosition(1, 1, 1));
+        entity.addComponent(new ArtemisTests.DummyComponentVelocity(2, 25));
         world.systemManager.initializeAll();
         world.loopStart();
         return movementSystem.process();
       });
       it("should have added the system", function() {
-        world.systemManager.allSystems[0].should.be.an["instanceof"](BragiTests.DummySystemMovement);
+        world.systemManager.allSystems[0].should.be.an["instanceof"](ArtemisTests.DummySystemMovement);
         return world.systemManager.systems.hasOwnProperty("DummySystemMovement").should.be["true"];
       });
       return it("should not have registered the entity as active", function() {
@@ -32,11 +32,11 @@
       movementSystem = null;
       component = null;
       before(function() {
-        world = new Bragi.EntityWorld();
-        movementSystem = world.systemManager.addSystem(new BragiTests.DummySystemMovement);
+        world = new Artemis.EntityWorld();
+        movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement);
         entity = world.createEntity();
-        entity.addComponent(new BragiTests.DummyComponentPosition(1, 1, 1));
-        entity.addComponent(new BragiTests.DummyComponentVelocity(2, 25));
+        entity.addComponent(new ArtemisTests.DummyComponentPosition(1, 1, 1));
+        entity.addComponent(new ArtemisTests.DummyComponentVelocity(2, 25));
         entity.refresh();
         world.systemManager.initializeAll();
         world.loopStart();
@@ -44,7 +44,7 @@
         return component = entity.getComponent("DummyComponentPosition");
       });
       it("should have added the system", function() {
-        world.systemManager.allSystems[0].should.be.an["instanceof"](BragiTests.DummySystemMovement);
+        world.systemManager.allSystems[0].should.be.an["instanceof"](ArtemisTests.DummySystemMovement);
         return world.systemManager.systems.hasOwnProperty("DummySystemMovement").should.be["true"];
       });
       it("should have registered the entity as active", function() {

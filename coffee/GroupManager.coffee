@@ -1,5 +1,5 @@
 
-Bragi.GroupManager = {}
+Artemis.GroupManager = {}
 
 
 class GroupManager
@@ -49,4 +49,4 @@ class GroupManager
 
 
 
-Bragi.GroupManager = GroupManager
+Artemis.GroupManager = GroupManager

@@ -2,7 +2,7 @@
 (function() {
   var ComponentType;
 
-  Bragi.ComponentType = {};
+  Artemis.ComponentType = {};
 
   ComponentType = (function() {
     var _nextBit, _nextId;
@@ -22,6 +22,6 @@
 
   })();
 
-  Bragi.ComponentType = ComponentType;
+  Artemis.ComponentType = ComponentType;
 
 }).call(this);

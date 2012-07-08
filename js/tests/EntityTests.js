@@ -5,16 +5,16 @@
     var world;
     world = null;
     before(function() {
-      return world = new Bragi.EntityWorld();
+      return world = new Artemis.EntityWorld();
     });
     describe("Instantiation", function() {
       var entity;
       entity = null;
       before(function() {
-        return entity = new Bragi.Entity(world, 0);
+        return entity = new Artemis.Entity(world, 0);
       });
       it("should have the world instance as property", function() {
-        return entity.world.should.be.an["instanceof"](Bragi.EntityWorld);
+        return entity.world.should.be.an["instanceof"](Artemis.EntityWorld);
       });
       return it("should have an id equal to 0", function() {
         return entity.id.should.be.equal(0);
@@ -26,15 +26,15 @@
       notInheritingFunction = null;
       before(function() {
         var component, notInheriting;
-        entity = new Bragi.Entity(world, 0);
-        component = new BragiTests.DummyComponentHP(100);
+        entity = new Artemis.Entity(world, 0);
+        component = new ArtemisTests.DummyComponentHP(100);
         entity.addComponent(component);
         notInheriting = {};
         return notInheritingFunction = function(notInheriting) {
           return entityManager._addComponent(entity, notInheriting);
         };
       });
-      it("should throw an error if calling with an object not inheriting from Bragi.Component", function() {
+      it("should throw an error if calling with an object not inheriting from Artemis.Component", function() {
         return notInheritingFunction.should.Throw(Error);
       });
       return it("should have a component stored in bits", function() {
@@ -46,8 +46,8 @@
       entity = null;
       before(function() {
         var component;
-        entity = new Bragi.Entity(world, 0);
-        component = new BragiTests.DummyComponentHP(100);
+        entity = new Artemis.Entity(world, 0);
+        component = new ArtemisTests.DummyComponentHP(100);
         entity.addComponent(component);
         return entity.removeComponent("DummyComponentHP");
       });
@@ -60,13 +60,13 @@
       entity = null;
       component = null;
       before(function() {
-        entity = new Bragi.Entity(world, 0);
-        component = new BragiTests.DummyComponentHP(100);
+        entity = new Artemis.Entity(world, 0);
+        component = new ArtemisTests.DummyComponentHP(100);
         entity.addComponent(component);
         return component = entity.getComponent("DummyComponentHP");
       });
       return it("should get a component DummyComponentHP with hp equal to 100", function() {
-        component.should.be.an["instanceof"](BragiTests.DummyComponentHP);
+        component.should.be.an["instanceof"](ArtemisTests.DummyComponentHP);
         return component.hp.should.be.equal(100);
       });
     });
@@ -74,7 +74,7 @@
       var entity;
       entity = null;
       before(function() {
-        entity = new Bragi.Entity(world, 0);
+        entity = new Artemis.Entity(world, 0);
         return entity["delete"]();
       });
       return it("entity should be in the deleted array of EntityWorld", function() {
