@@ -16,6 +16,8 @@
       this.world = world;
       this.systems = {};
       this.allSystems = [];
+      this.updateSystems = {};
+      this.renderSystems = {};
     }
 
     SystemManager.prototype._getBitFor = function(system) {
@@ -29,9 +31,26 @@
       return bit;
     };
 
-    SystemManager.prototype.addSystem = function(system) {
+    SystemManager.prototype.addSystem = function(system, execType, priority) {
+      if (priority == null) {
+        priority = 0;
+      }
+      if (execType !== "update" && execType !== "draw") {
+        throw "Invalid type when adding a system: it can only be the string update or draw";
+      }
       system.world = this.world;
       this.systems[system.constructor.name] = system;
+      if (execType === "update") {
+        if (!this.updateSystems[priority]) {
+          this.updateSystems[priority] = [];
+        }
+        this.updateSystems[priority].push(system);
+      } else if (execType === "render") {
+        if (!this.renderSystems[priority]) {
+          this.renderSystems[priority] = [];
+        }
+        this.renderSystems[priority].push(system);
+      }
       if (__indexOf.call(this.allSystems, system) < 0) {
         this.allSystems.push(system);
       }
@@ -50,6 +69,35 @@
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         system = _ref[_i];
         _results.push(system.initialize());
+      }
+      return _results;
+    };
+
+    SystemManager.prototype.updateSynchronous = function(execType) {
+      var priority, _results, _results1;
+      if (execType === "update") {
+        _results = [];
+        for (priority in this.updateSystems) {
+          _results.push(this.updateArraySynchronous(this.updateSystems[priority]));
+        }
+        return _results;
+      } else if (execType === "draw") {
+        _results1 = [];
+        for (priority in this.renderSystems) {
+          _results1.push(this.updateArraySynchronous(this.renderSystems[priority]));
+        }
+        return _results1;
+      } else {
+        throw "Invalid type when trying to update: it can only be the string update or draw";
+      }
+    };
+
+    SystemManager.prototype.updateArraySynchronous = function(systems) {
+      var system, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = systems.length; _i < _len; _i++) {
+        system = systems[_i];
+        _results.push(system.process());
       }
       return _results;
     };

@@ -52,8 +52,8 @@ class System
     #First we check if the system bit is in the bits from the entity
     contains = (@bit & entity.systemBits) == @systemBit
     #And now we check if the component is used by this system
-    interest = (@typeFlags & entity.typeBits) == @typeFlags;
-
+    interest = (@typeFlags & entity.typeBits) == @typeFlags
+    
     #If the system is interested in this component but this entity is not registered
     if interest and not contains and @typeFlags > 0
       @actives[entity.id] = entity

@@ -9,13 +9,13 @@
       movementSystem = null;
       before(function() {
         world = new Artemis.EntityWorld();
-        movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement);
+        movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement, "update");
         entity = world.createEntity();
         entity.addComponent(new ArtemisTests.DummyComponentPosition(1, 1, 1));
         entity.addComponent(new ArtemisTests.DummyComponentVelocity(2, 25));
         world.systemManager.initializeAll();
         world.loopStart();
-        return movementSystem.process();
+        return world.systemManager.updateSynchronous("update");
       });
       it("should have added the system", function() {
         world.systemManager.allSystems[0].should.be.an["instanceof"](ArtemisTests.DummySystemMovement);
@@ -33,14 +33,14 @@
       component = null;
       before(function() {
         world = new Artemis.EntityWorld();
-        movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement);
+        movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement, "update");
         entity = world.createEntity();
         entity.addComponent(new ArtemisTests.DummyComponentPosition(1, 1, 1));
         entity.addComponent(new ArtemisTests.DummyComponentVelocity(2, 25));
         entity.refresh();
         world.systemManager.initializeAll();
         world.loopStart();
-        movementSystem.process();
+        world.systemManager.updateSynchronous("update");
         return component = entity.getComponent("DummyComponentPosition");
       });
       it("should have added the system", function() {

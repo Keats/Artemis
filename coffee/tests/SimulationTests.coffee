@@ -10,7 +10,7 @@ describe "Game simulation", ->
     before () ->
       world = new Artemis.EntityWorld()
 
-      movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement)
+      movementSystem = world.systemManager.addSystem new ArtemisTests.DummySystemMovement,"update"
 
       entity = world.createEntity()
 
@@ -21,7 +21,7 @@ describe "Game simulation", ->
 
       world.loopStart()
 
-      movementSystem.process()
+      world.systemManager.updateSynchronous "update"
 
     it "should have added the system", ->
       world.systemManager.allSystems[0].should.be.an.instanceof ArtemisTests.DummySystemMovement
@@ -40,7 +40,7 @@ describe "Game simulation", ->
     before () ->
       world = new Artemis.EntityWorld()
 
-      movementSystem = world.systemManager.addSystem(new ArtemisTests.DummySystemMovement)
+      movementSystem = world.systemManager.addSystem new ArtemisTests.DummySystemMovement, "update"
 
       entity = world.createEntity()
 
@@ -52,7 +52,7 @@ describe "Game simulation", ->
 
       world.loopStart()
 
-      movementSystem.process()
+      world.systemManager.updateSynchronous "update"
 
       component = entity.getComponent "DummyComponentPosition"
 

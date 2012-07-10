@@ -15,6 +15,10 @@ class SystemManager
     @systems = {}
     #An array of all the systems
     @allSystems = []
+
+    #Maybe later join this in an array of 2 objects
+    @updateSystems = {}
+    @renderSystems = {}
     
     
   #Replaces the SystemBitManager
@@ -29,12 +33,29 @@ class SystemManager
     bit
 
 
-  #Adds a system
-  addSystem: (system) ->
-    system.world = @world
-    
-    @systems[system.constructor.name] = system
+  #Adds a system, execType is either update or render, priority allows to group some operations
+  # and ensure that some are finished before doing others, 0 is done first and so on
+  addSystem: (system, execType, priority = 0) ->
+    if execType isnt "update" and execType isnt "draw" 
+      throw "Invalid type when adding a system: it can only be the string update or draw"
 
+    #adding the world variable since we need to have it later
+    system.world = @world
+
+    #A system is basically a singleton
+    @systems[system.constructor.name] = system
+    #Next adding to distinct update or render objects
+    if execType is "update"
+      unless @updateSystems[priority]
+        @updateSystems[priority] = []
+      @updateSystems[priority].push system
+
+    else if execType is "render"
+      unless @renderSystems[priority]
+        @renderSystems[priority] = []
+      @renderSystems[priority].push system
+
+    #And we keep an array of all those systems
     if system not in @allSystems
       @allSystems.push system
 
@@ -52,6 +73,25 @@ class SystemManager
   initializeAll: () ->
     for system in @allSystems
       system.initialize()
+
+
+  #Updates all system for a give execType
+  updateSynchronous: (execType) ->
+    if execType is "update"
+      #do update
+      for priority of @updateSystems
+        @updateArraySynchronous @updateSystems[priority]
+    else if execType is "draw"
+      for priority of @renderSystems
+        @updateArraySynchronous @renderSystems[priority]
+    else
+      throw "Invalid type when trying to update: it can only be the string update or draw"
+
+
+  #Really update the systems given
+  updateArraySynchronous:(systems) ->
+    for system in systems
+      system.process()
 
 
 
