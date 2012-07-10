@@ -28,7 +28,7 @@ describe "System Manager", ->
       systemManager.renderSystems.should.be.empty
 
 
-  describe "Adding a system", ->
+  describe "Adding an update system", ->
     system = null
     systemManager = null
 
@@ -45,6 +45,25 @@ describe "System Manager", ->
       systemManager.updateSystems[0].should.be.an.instanceof Object
     it "should have pushed the system to the updateSystems object", ->
       Object.keys(systemManager.updateSystems[0]).should.have.length 1
+
+
+  describe "Adding a draw system", ->
+    system = null
+    systemManager = null
+
+    before () ->
+      systemManager = new Artemis.SystemManager world
+      system = new Artemis.System "DummyComponentHP", "DummyComponentPosition"
+      systemManager.addSystem system, "draw"
+
+    it "should have added a entry in the systems object and so it should have a length of 1", ->
+      Object.keys(systemManager.systems).should.have.length 1
+    it "should have pushed the system to the allSystems array", ->
+      systemManager.allSystems.should.contain system
+    it "should have set the default priority to 0", ->
+      systemManager.renderSystems[0].should.be.an.instanceof Object
+    it "should have pushed the system to the updateSystems object", ->
+      Object.keys(systemManager.renderSystems[0]).should.have.length 1
 
 
   describe "Adding a system without an exec type should throw an error", ->

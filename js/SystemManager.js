@@ -45,7 +45,7 @@
           this.updateSystems[priority] = [];
         }
         this.updateSystems[priority].push(system);
-      } else if (execType === "render") {
+      } else if (execType === "draw") {
         if (!this.renderSystems[priority]) {
           this.renderSystems[priority] = [];
         }

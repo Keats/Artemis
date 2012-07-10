@@ -50,7 +50,7 @@ class SystemManager
         @updateSystems[priority] = []
       @updateSystems[priority].push system
 
-    else if execType is "render"
+    else if execType is "draw"
       unless @renderSystems[priority]
         @renderSystems[priority] = []
       @renderSystems[priority].push system
